@@ -4,6 +4,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from '../page/Home/HomeScreen';
 import Temp from '../page/Home/Temp';
 import PanoramaScreen from '../page/Panorama/PanoramaScreen';
+import Scanner from '../page/Home/Scanner';
 
 const navOptionHandler = navigation => ({
   header: null,
@@ -11,8 +12,8 @@ const navOptionHandler = navigation => ({
 const PaOptions = {
   title: '全景图',
 };
-// 
-const HomeStack = createStackNavigator({
+
+const PageStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
     navigationOptions: navOptionHandler,
@@ -24,7 +25,13 @@ const HomeStack = createStackNavigator({
   PanoramaScreen: {
     screen: PanoramaScreen,
     navigationOptions: PaOptions,
-  }
+  },
+  Scanner: {
+    screen: Scanner,
+    navigationOptions: {
+      title: 'Scanner',
+    },
+  },
 });
 
-export default HomeStack;
+export default PageStack;

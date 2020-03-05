@@ -38,6 +38,8 @@ target 'RNtest09' do
 
   pod 'react-native-amap-geolocation', :path => '../node_modules/react-native-amap-geolocation'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'RNtest09Tests' do
     inherit! :search_paths
     # Pods for testing

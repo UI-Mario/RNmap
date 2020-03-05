@@ -25,6 +25,10 @@ export default class HomeScreen extends Component {
           title="全景图"
           onPress={() => this.props.navigation.navigate('PanoramaScreen')}
         />
+        <Button
+          title="全景图"
+          onPress={() => this.props.navigation.navigate('Scanner')}
+        />
         <MapView
           locationEnabled={true}
           showsCompass={true}
@@ -32,7 +36,7 @@ export default class HomeScreen extends Component {
           showsLocationButton={true}
           draggable
           coordinate={this.state.coordinate}
-          // mapType={'navi'}
+          // mapType={MapType.Night}
           zoomLevel={20}
           zoomEnabled={true}
           scrollEnabled={true}
