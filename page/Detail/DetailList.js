@@ -11,12 +11,6 @@ import {
 } from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 
-//TODO:
-//点击图片跳转详情页
-const onpressTest = () => {
-  console.log('Press');
-};
-
 export default class DetailList extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +28,12 @@ export default class DetailList extends Component {
     console.log('Yes');
   };
 
+  //TODO:
+  //点击图片跳转详情页
+  onPressNavi = () => {
+    alert('yes');
+    // this.props.navigation.navigate('DetailPage');
+  };
   getDetailList = () => {
     const url =
       'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
@@ -53,7 +53,7 @@ export default class DetailList extends Component {
       // 视频列表
       <View style={styles.listitem}>
         <View style={styles.imgcontainer} onPress={this.onPressNavigate}>
-          <TouchableOpacity onPress={onpressTest}>
+          <TouchableOpacity onPress={this.onPressNavi}>
             <Image source={{uri: item.pic}} style={styles.disPic} />
           </TouchableOpacity>
         </View>
@@ -73,7 +73,7 @@ export default class DetailList extends Component {
     }
     return (
       <ScrollView>
-        <Button title="kkkk" onPress={() => console.log('PPP')} />
+        {/* <Button title="kkkk" onPress={() => console.log('PPP')} /> */}
         <View style={styles.container}>
           {this.state.detailListData.map(this.renderItem)}
         </View>
