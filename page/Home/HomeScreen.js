@@ -7,6 +7,7 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
 import {MapView, Marker, Polyline, Polygon, MapType} from 'react-native-amap3d';
 
@@ -47,7 +48,7 @@ export default class HomeScreen extends Component {
   renderItem = item => {
     return (
       <MapView.Marker color="red" coordinate={item.location} title="hhhh">
-        <TouchableOpacity activeOpacity={0.9} onLongPress={this.onPressNavi}>
+        <TouchableOpacity activeOpacity={0.8} onLongPress={this.onPressNavi}>
           <View style={styles.customInfoWindow}>
             <Text>{item.name}</Text>
           </View>
@@ -59,10 +60,15 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Button
-          title="全景图"
-          onPress={() => this.props.navigation.navigate('PanoramaScreen')}
-        />
+        <View style={styles.panoramaContainer}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('PanoramaScreen')}>
+            <Image
+              style={styles.panoramaIcon}
+              source={require('../../img/panorama.png')}
+            />
+          </TouchableOpacity>
+        </View>
         <MapView
           locationEnabled={true}
           showsCompass={true}
@@ -96,6 +102,22 @@ export default class HomeScreen extends Component {
   }
 }
 const styles = {
+  panoramaContainer: {
+    width: 43,
+    height: 43,
+    position: 'absolute',
+    // backgroundColor: 'blue',
+    right: 5,
+    top: 50,
+  },
+  test: {
+    width: '100%',
+    height: '100%',
+  },
+  panoramaIcon: {
+    width: '100%',
+    height: '100%',
+  },
   mapStyles: {
     position: 'absolute',
     top: 0,
