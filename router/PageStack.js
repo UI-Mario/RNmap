@@ -5,6 +5,7 @@ import HomeScreen from '../page/Home/HomeScreen';
 import Temp from '../page/Home/Temp';
 import PanoramaScreen from '../page/Panorama/PanoramaScreen';
 import Scanner from '../page/Home/Scanner';
+import DetailPage from '../page/Detail/DetailPage';
 
 const navOptionHandler = navigation => ({
   header: null,
@@ -31,6 +32,10 @@ const PageStack = createStackNavigator({
     navigationOptions: {
       title: 'Scanner',
     },
+  },
+  DetailPage: {
+    screen: DetailPage,
+    navigation: navOptionHandler,
   },
 });
 

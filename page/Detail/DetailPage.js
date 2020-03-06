@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-export default class DetailScreen extends Component {
+export default class DetailPage extends Component {
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>List</Text>
+        <Text>Detail</Text>
       </View>
     );
   }
@@ -14,7 +15,8 @@ export default class DetailScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
   },
 });

@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import PageStack from './router/PageStack';
 import SettingsScreen from './page/Setting/SettingScreen';
-import DetailScreen from './page/Detail/DetailScreen';
+import DetailList from './page/Detail/DetailList';
 
 const navOptionHandler = navigation => ({
   header: null
@@ -31,8 +31,8 @@ const TabNavigator = createBottomTabNavigator({
       },
     },
   },
-  Detail: {
-    screen: DetailScreen,
+  DetailList: {
+    screen: DetailList,
     navigationOptions: {
       tabBarLabel: 'Detail',
       tabBarIcon: ({focused}) => {
