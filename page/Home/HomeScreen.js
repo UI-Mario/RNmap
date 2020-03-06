@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Image,
   Button,
   TouchableOpacity,
 } from 'react-native';
@@ -24,7 +25,6 @@ export default class HomeScreen extends Component {
 
   onPressNavi = () => {
     this.props.navigation.navigate('DetailPage');
-    // console.log('IIIIIII');
   };
 
   componentDidMount() {
@@ -37,7 +37,6 @@ export default class HomeScreen extends Component {
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        // console.log(data.data);
         this.setState({
           isloading: false,
           detailListData: data.data,
@@ -47,10 +46,7 @@ export default class HomeScreen extends Component {
 
   renderItem = item => {
     return (
-      <MapView.Marker
-        color="red"
-        coordinate={item.location}
-        title="hhhh">
+      <MapView.Marker color="red" coordinate={item.location} title="hhhh">
         <TouchableOpacity activeOpacity={0.9} onLongPress={this.onPressNavi}>
           <View style={styles.customInfoWindow}>
             <Text>{item.name}</Text>
@@ -63,14 +59,9 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Button title="go to Temp" onPress={this.onPressNavi} />
         <Button
           title="全景图"
           onPress={() => this.props.navigation.navigate('PanoramaScreen')}
-        />
-        <Button
-          title="二维码"
-          onPress={() => this.props.navigation.navigate('Scanner')}
         />
         <MapView
           locationEnabled={true}
@@ -89,6 +80,17 @@ export default class HomeScreen extends Component {
           zoomLevel={15}>
           {this.state.detailListData.map(this.renderItem)}
         </MapView>
+        <View style={styles.iconBottom}>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate('Scanner')}>
+            <View style={styles.iconContainer}>
+              <Image
+                style={styles.scannerIcon}
+                source={require('../../img/scanner.png')}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -119,75 +121,26 @@ const styles = {
   markerText: {
     color: '#fff',
   },
+  iconBottom: {
+    width: '100%',
+    height: 90,
+    // backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 0,
+  },
+  iconContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  scannerIcon: {
+    width: '70%',
+    height: '70%',
+  },
 };
-
-// import React, { Component } from "react";
-// import { PermissionsAndroid, StyleSheet, Switch, Text, View } from "react-native";
-// import { MapView } from "react-native-amap3d";
-// import styles from "../styles";
-
-// export default class HomeScreen extends Component {
-//   static navigationOptions = {
-//     title: "地图控件"
-//   };
-
-//   state = {
-//     showsCompass: false,
-//     showsScale: true,
-//     showsZoomControls: true,
-//     showsLocationButton: false
-//   };
-
-//   componentDidMount() {
-//     PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION);
-//   }
-
-//   render() {
-//     return (
-//       <View style={StyleSheet.absoluteFill}>
-//         <MapView
-//           locationEnabled={this.state.showsLocationButton}
-//           showsCompass={this.state.showsCompass}
-//           showsScale={this.state.showsScale}
-//           showsLocationButton={this.state.showsLocationButton}
-//           showsZoomControls={this.state.showsZoomControls}
-//           style={styles.map}
-//         />
-//         <View style={styles.controls}>
-//           <View style={styles.control}>
-//             <Switch
-//               style={styles.switch}
-//               onValueChange={showsCompass => this.setState({ showsCompass })}
-//               value={this.state.showsCompass}
-//             />
-//             <Text>指南针</Text>
-//           </View>
-//           <View style={styles.control}>
-//             <Switch
-//               style={styles.switch}
-//               onValueChange={showsScale => this.setState({ showsScale })}
-//               value={this.state.showsScale}
-//             />
-//             <Text>比例尺</Text>
-//           </View>
-//           <View style={styles.control}>
-//             <Switch
-//               style={styles.switch}
-//               onValueChange={showsLocationButton => this.setState({ showsLocationButton })}
-//               value={this.state.showsLocationButton}
-//             />
-//             <Text>定位</Text>
-//           </View>
-//           <View style={styles.control}>
-//             <Switch
-//               style={styles.switch}
-//               onValueChange={showsZoomControls => this.setState({ showsZoomControls })}
-//               value={this.state.showsZoomControls}
-//             />
-//             <Text>缩放</Text>
-//           </View>
-//         </View>
-//       </View>
-//     );
-//   }
-// }
