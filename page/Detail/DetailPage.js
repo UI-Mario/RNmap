@@ -1,12 +1,54 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Dimensions} from 'react-native';
+import {WebView} from 'react-native-webview';
+
+const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
 
 export default class DetailPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {},
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.props.navigation.state.params);
+    const data = this.props.navigation.state.params;
+
+    this.setState({
+      data: data,
+    });
+    // const data = this.props.navigation.state.params;
+    // let id = this.props.navigation.state.params.id;
+    // console.log(id);
+    // let name = this.props.navigation.state.params.name;
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Detail</Text>
+        <Text>{this.state.data.name}</Text>
+        <View style={styles.webContain}>
+          <WebView
+            // bounces={true}
+            scalesPageToFit={false}
+            source={{
+              html: `<iframe 
+                  src="https://player.bilibili.com/player.html?aid=56652763&cid=98974350&page=1" 
+                  scrolling="no" 
+                  border="0" 
+                  frameborder="no" 
+                  framespacing="0" 
+                  allowfullscreen="true"
+                  style="width:100%;"> 
+                </iframe>`,
+            }}
+            style={{
+              width: '100%',
+              height: 300,
+            }}></WebView>
+        </View>
       </View>
     );
   }
@@ -15,8 +57,11 @@ export default class DetailPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: 'white',
+  },
+  webContain: {
+    width: '100%',
+    height: 300,
+    // backgroundColor: 'black',
   },
 });

@@ -24,9 +24,20 @@ export default class HomeScreen extends Component {
     };
   }
 
-  onPressNavi = () => {
+  onPressNavi = data => {
+    alert('ssss');
     this.props.navigation.navigate('DetailPage');
   };
+
+  //   onPress = { () => {this.navigation.navigate('Device',{id:'sds',name:'Qli'})}}
+
+  // 在Device页面，接收传递过来的参数
+  // export default class Device extends Component
+  //     componentDidMount(){
+  //         let id = this.props.navigation.state.params.id;
+  //         let name = this.props.navigation.state.params.name;
+  //     }
+  // }
 
   componentDidMount() {
     this.getDetailList();
@@ -47,8 +58,14 @@ export default class HomeScreen extends Component {
 
   renderItem = item => {
     return (
-      <MapView.Marker color="red" coordinate={item.location} title="hhhh">
-        <TouchableOpacity activeOpacity={0.8} onLongPress={this.onPressNavi}>
+      <MapView.Marker
+        image="flag"
+        // color="red"
+        coordinate={item.location}
+        title="hhhh">
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => this.props.navigation.navigate('DetailPage', item)}>
           <View style={styles.customInfoWindow}>
             <Text>{item.name}</Text>
           </View>

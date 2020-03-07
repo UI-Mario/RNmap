@@ -25,7 +25,8 @@ export default class DetailList extends Component {
   }
 
   onPressNavigate = () => {
-    console.log('Yes');
+    // console.log('Yes');
+    alert('1');
   };
 
   //TODO:
@@ -52,11 +53,13 @@ export default class DetailList extends Component {
     return (
       // 视频列表
       <View style={styles.listitem}>
-        <View style={styles.imgcontainer} onPress={this.onPressNavigate}>
-          <TouchableOpacity onPress={this.onPressNavi}>
-            <Image source={{uri: item.pic}} style={styles.disPic} />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={this.onPressNavi}>
+          <View style={styles.imgcontainer}>
+            <Text>JJJJ</Text>
+            {/* <Image source={{uri: item.pic}} style={styles.disPic} /> */}
+          </View>
+        </TouchableOpacity>
+
         <View style={styles.detailinfo}>
           <Text numberOfLines={2} style={styles.title}>
             {item.title}
@@ -73,7 +76,6 @@ export default class DetailList extends Component {
     }
     return (
       <ScrollView>
-        {/* <Button title="kkkk" onPress={() => console.log('PPP')} /> */}
         <View style={styles.container}>
           {this.state.detailListData.map(this.renderItem)}
         </View>
