@@ -35,7 +35,7 @@ const PageStack = createStackNavigator({
   },
   DetailPage: {
     screen: DetailPage,
-    navigation: navOptionHandler,
+    // navigationOptions: navOptionHandler,
   },
 });
 

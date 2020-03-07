@@ -29,16 +29,6 @@ export default class HomeScreen extends Component {
     this.props.navigation.navigate('DetailPage');
   };
 
-  //   onPress = { () => {this.navigation.navigate('Device',{id:'sds',name:'Qli'})}}
-
-  // 在Device页面，接收传递过来的参数
-  // export default class Device extends Component
-  //     componentDidMount(){
-  //         let id = this.props.navigation.state.params.id;
-  //         let name = this.props.navigation.state.params.name;
-  //     }
-  // }
-
   componentDidMount() {
     this.getDetailList();
   }
@@ -59,7 +49,7 @@ export default class HomeScreen extends Component {
   renderItem = item => {
     return (
       <MapView.Marker
-        image="flag"
+        image={item.shot}
         // color="red"
         coordinate={item.location}
         title="hhhh">

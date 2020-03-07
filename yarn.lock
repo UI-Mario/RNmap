@@ -3721,7 +3721,7 @@ jest@^24.9.0:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
 
-jetifier@^1.6.2:
+jetifier@^1.6.2, jetifier@^1.6.5:
   version "1.6.5"
   resolved "https://registry.npm.taobao.org/jetifier/download/jetifier-1.6.5.tgz#ea87324a4230bef20a9651178ecab978ee54a8cb"
   integrity sha1-6ocySkIwvvIKllEXjsq5eO5UqMs=
@@ -5056,7 +5056,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -5140,6 +5140,13 @@ react-native-amap3d@^1.1.1:
   resolved "https://registry.npm.taobao.org/react-native-amap3d/download/react-native-amap3d-1.1.1.tgz#15f736907056a5ee451157cd7a948e0931bf8fe1"
   integrity sha1-Ffc2kHBWpe5FEVfNepSOCTG/j+E=
 
+react-native-camera@^3.19.0:
+  version "3.19.0"
+  resolved "https://registry.npm.taobao.org/react-native-camera/download/react-native-camera-3.19.0.tgz#32c43908d3ba398c89d21437a9dba2ebb17f3896"
+  integrity sha1-MsQ5CNO6OYyJ0hQ3qdui67F/OJY=
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-gesture-handler@^1.5.2:
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.5.2.tgz#281111550bf1eee10b7feba5278d142169892731"
@@ -5149,11 +5156,6 @@ react-native-gesture-handler@^1.5.2:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
-
-react-native-maps@0.26.1:
-  version "0.26.1"
-  resolved "https://registry.npm.taobao.org/react-native-maps/download/react-native-maps-0.26.1.tgz#6ec316259b38d259c8974448d894bd7a23101da4"
-  integrity sha1-bsMWJZs40lnIl0RI2JS9eiMQHaQ=
 
 react-native-reanimated@^1.4.0:
   version "1.4.0"
@@ -5180,6 +5182,13 @@ react-native-screens@^2.0.0-alpha.22:
   integrity sha1-Z83kYBU5heQA4CgO06Dlvgew3Fo=
   dependencies:
     debounce "^1.2.0"
+
+react-native-swiper@^1.6.0-nightly.5:
+  version "1.6.0-nightly.5"
+  resolved "https://registry.npm.taobao.org/react-native-swiper/download/react-native-swiper-1.6.0-nightly.5.tgz#894319918ff22680c325b8052457ccf213a7c7cd"
+  integrity sha1-iUMZkY/yJoDDJbgFJFfM8hOnx80=
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-tab-view@^2.11.0:
   version "2.11.0"

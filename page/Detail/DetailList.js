@@ -8,8 +8,11 @@ import {
   Alert,
   Button,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
+
+import SwiperComponent from '../../component/swiper';
 
 export default class DetailList extends Component {
   constructor(props) {
@@ -24,24 +27,13 @@ export default class DetailList extends Component {
     this.getDetailList();
   }
 
-  onPressNavigate = () => {
-    // console.log('Yes');
-    alert('1');
-  };
-
-  //TODO:
-  //点击图片跳转详情页
-  onPressNavi = () => {
-    alert('yes');
-    // this.props.navigation.navigate('DetailPage');
-  };
   getDetailList = () => {
     const url =
       'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.log(data.data);
+        // console.log(data.data);
         this.setState({
           isloading: false,
           detailListData: data.data,
@@ -51,14 +43,19 @@ export default class DetailList extends Component {
 
   renderItem = item => {
     return (
-      // 视频列表
+      // 列表
       <View style={styles.listitem}>
-        <TouchableOpacity onPress={this.onPressNavi}>
-          <View style={styles.imgcontainer}>
-            <Text>JJJJ</Text>
-            {/* <Image source={{uri: item.pic}} style={styles.disPic} /> */}
-          </View>
-        </TouchableOpacity>
+        <View style={styles.imgcontainer}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => this.props.navigation.navigate('DetailPage', item)}>
+            <Image
+              source={require('../../img/panorama.png')}
+              // source={{uri: item.pic}}
+              style={styles.disPic}
+            />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.detailinfo}>
           <Text numberOfLines={2} style={styles.title}>
@@ -77,7 +74,10 @@ export default class DetailList extends Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          {this.state.detailListData.map(this.renderItem)}
+          <SwiperComponent style={styles.swiper} />
+          <View style={styles.listcontainer}>
+            {this.state.detailListData.map(this.renderItem)}
+          </View>
         </View>
       </ScrollView>
     );
@@ -90,12 +90,12 @@ export default class DetailList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'red',
-    width: '100%',
-    marginTop: 10,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    flex: 1,
+    padding: 8,
+  },
+  listcontainer:{
+    alignItems: 'center',
+    // justifyContent: 'center'
   },
   listitem: {
     width: '88%',
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: 'white',
     marginBottom: 10,
+    marginTop: 10,
     overflow: 'hidden',
   },
   imgcontainer: {

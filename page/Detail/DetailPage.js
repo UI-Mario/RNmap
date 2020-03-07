@@ -19,10 +19,6 @@ export default class DetailPage extends Component {
     this.setState({
       data: data,
     });
-    // const data = this.props.navigation.state.params;
-    // let id = this.props.navigation.state.params.id;
-    // console.log(id);
-    // let name = this.props.navigation.state.params.name;
   }
 
   render() {
@@ -46,7 +42,7 @@ export default class DetailPage extends Component {
             }}
             style={{
               width: '100%',
-              height: 300,
+              height: 330,
             }}></WebView>
         </View>
       </View>
