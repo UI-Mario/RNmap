@@ -39,6 +39,8 @@ export default class DetailList extends Component {
   };
 
   renderItem = item => {
+    const unFillUrl = 'https://s2.ax1x.com/2020/03/10/8FkfsK.png';
+    const fillUrl = 'https://s2.ax1x.com/2020/03/10/8FAWfs.png';
     return (
       // 列表
       <View style={styles.listitem}>
@@ -46,19 +48,22 @@ export default class DetailList extends Component {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => this.props.navigation.navigate('DetailPage', item)}>
-            <Image
-              source={require('../../img/panorama.png')}
-              // source={{uri: item.pic}}
-              style={styles.disPic}
-            />
+            <Image source={{uri: item.pic}} style={styles.disPic} />
           </TouchableOpacity>
         </View>
 
         <View style={styles.detailinfo}>
-          <Text numberOfLines={2} style={styles.title}>
-            {item.title}
-          </Text>
-          <Text style={styles.name}>{item.name}</Text>
+          <View>
+            <Text numberOfLines={2} style={styles.title}>
+              {item.title}
+            </Text>
+            <Text style={styles.name}>{item.name}</Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => console.log('yes')}>
+            <Image source={{uri: unFillUrl}} style={styles.love} />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -71,6 +76,9 @@ export default class DetailList extends Component {
     return (
       <ScrollView>
         <View style={styles.container}>
+          <View style={styles.totalTitle}>
+            <Text>推荐景点</Text>
+          </View>
           <SwiperComponent style={styles.swiper} />
           <View style={styles.listcontainer}>
             {this.state.detailListData.map(this.renderItem)}
@@ -88,7 +96,23 @@ export default class DetailList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 8,
+    backgroundColor: '#e6e6e6',
+  },
+  totalTitle: {
+    width: '100%',
+    height: 45,
+    marginBottom: 10,
+
+    backgroundColor: '#fff',
+    // 边框样式 (solid-固体/立方体、dotted-布满的/打点的、dashed-虚线)
+    borderStyle: 'solid',
+    // 边框颜色
+    borderColor: '#cdcdcd',
+    // 边框宽度
+    // borderWidth: 1,
+    borderBottomWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   listcontainer: {
     alignItems: 'center',
@@ -106,7 +130,7 @@ const styles = StyleSheet.create({
   imgcontainer: {
     width: '100%',
     height: 150,
-    backgroundColor: 'blue',
+    backgroundColor: '#1296db',
   },
   disPic: {
     width: '100%',
@@ -116,9 +140,18 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 60,
     flexDirection: 'row',
+    padding: 10,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  title: {},
+  love: {
+    // position: 'absolute',
+    // bottom: 5,
+    // right: 10,
+    width: 20,
+    height: 20,
+    zIndex: 10,
+  },
   name: {
     color: '#cdcdcd',
   },

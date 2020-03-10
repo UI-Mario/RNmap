@@ -31,7 +31,12 @@ export default class SettingScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>SettingScreen</Text>
+        <View style={styles.top}>
+          <Text>jjjj</Text>
+        </View>
+        <View style={styles.bottom}>
+          <Text>UUU</Text>
+        </View>
       </View>
     );
   }
@@ -40,8 +45,10 @@ export default class SettingScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
+  },
+  top: {
+    width: '100%',
+    height: '50%',
+    backgroundColor: '#1296db',
   },
 });

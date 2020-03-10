@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   swiperimg: {
     width: '100%',
     height: '100%',
-    borderRadius: 5,
+    // borderRadius: 5,
   },
 });
 
