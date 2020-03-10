@@ -43,7 +43,8 @@ export default class DetailPage extends Component {
             style={{
               width: '100%',
               height: 330,
-            }}></WebView>
+              // eslint-disable-next-line prettier/prettier
+            }} />
         </View>
       </View>
     );

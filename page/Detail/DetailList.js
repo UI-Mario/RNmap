@@ -5,9 +5,6 @@ import {
   StyleSheet,
   Image,
   ActivityIndicator,
-  Alert,
-  Button,
-  TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 8,
   },
-  listcontainer:{
+  listcontainer: {
     alignItems: 'center',
     // justifyContent: 'center'
   },

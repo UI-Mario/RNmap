@@ -17,12 +17,27 @@ export default class Scanner extends Component {
     super(props);
     this.state = {
       moveAnim: new Animated.Value(0),
+      detailListData: [],
     };
   }
 
   componentDidMount() {
+    this.getDetailList();
     this.startAnimation();
   }
+
+  getDetailList = () => {
+    const url =
+      'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data.data);
+        this.setState({
+          detailListData: data.data,
+        });
+      });
+  };
 
   startAnimation = () => {
     this.state.moveAnim.setValue(0);
@@ -36,6 +51,9 @@ export default class Scanner extends Component {
   onBarCodeRead = result => {
     console.log('二维码内容：');
     console.log(result.data);
+    // this.onPress();
+    var id = result.data;
+    this.props.navigation.navigate('DetailPage', this.state.detailListData[id]);
     // alert('二维码内容：' + result);
     // const {navigate} = this.props.navigation;
     // const {data} = result;
@@ -44,21 +62,17 @@ export default class Scanner extends Component {
     // });
   };
 
+  onPress = () => {
+    this.props.navigation.navigate('DetailPage');
+  };
 
-
-
-//   onPress = { () => {this.navigation.navigate('Device',{id:'sds',name:'Qli'})}}
-
-// 在Device页面，接收传递过来的参数
-// export default class Device extends Component
-//     componentDidMount(){
-//         let id = this.props.navigation.state.params.id;
-//         let name = this.props.navigation.state.params.name;
-//     }
-// }
-
-
-
+  // 在Device页面，接收传递过来的参数
+  // export default class Device extends Component
+  //     componentDidMount(){
+  //         let id = this.props.navigation.state.params.id;
+  //         let name = this.props.navigation.state.params.name;
+  //     }
+  // }
 
   render() {
     return (

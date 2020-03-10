@@ -24,11 +24,6 @@ export default class HomeScreen extends Component {
     };
   }
 
-  onPressNavi = data => {
-    alert('ssss');
-    this.props.navigation.navigate('DetailPage');
-  };
-
   componentDidMount() {
     this.getDetailList();
   }
@@ -90,6 +85,7 @@ export default class HomeScreen extends Component {
           rotateEnabled={true}
           style={styles.mapStyles}
           showsZoomControls={true}
+          // eslint-disable-next-line react/jsx-no-duplicate-props
           zoomLevel={15}>
           {this.state.detailListData.map(this.renderItem)}
         </MapView>

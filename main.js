@@ -8,7 +8,7 @@ import SettingsScreen from './page/Setting/SettingScreen';
 import DetailStack from './router/DetailStack';
 
 const navOptionHandler = navigation => ({
-  header: null
+  header: null,
 });
 
 const TabNavigator = createBottomTabNavigator({
@@ -45,7 +45,10 @@ const TabNavigator = createBottomTabNavigator({
           );
         }
         return (
-          <Image style={styles.tabBarIcon} source={require('./img/details.png')} />
+          <Image
+            style={styles.tabBarIcon}
+            source={require('./img/details.png')}
+          />
         );
       },
     },
