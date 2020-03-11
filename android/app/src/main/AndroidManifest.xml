@@ -45,7 +45,7 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme">
       <service android:name="com.amap.api.location.APSService"></service>
-      <meta-data android:name="com.amap.api.v2.apikey" android:value="43a7a2261e45d9ab9e615e9fcde1beb3">//开发者申请的key       
+      <meta-data android:name="com.amap.api.v2.apikey" android:value="97137e0d43831195a15d1fbabe4ca48f">//开发者申请的key       
       </meta-data>
       <activity
         android:name=".MainActivity"

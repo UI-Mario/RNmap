@@ -6,6 +6,7 @@ import {
   Image,
   ActivityIndicator,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -80,6 +81,10 @@ export default class DetailList extends Component {
             <Text>推荐景点</Text>
           </View>
           <SwiperComponent style={styles.swiper} />
+          <Button
+            title="hhhhh"
+            onPress={() => this.props.navigation.navigate('ARScreen')}
+          />
           <View style={styles.listcontainer}>
             {this.state.detailListData.map(this.renderItem)}
           </View>
