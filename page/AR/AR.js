@@ -8,8 +8,7 @@ export default class ARScreen extends Component {
       <View style={styles.container}>
         <WebView
           source={{
-            uri:
-              'https://nicolo-carpignoli.herokuapp.com/examples/places-name/',
+            uri: 'https://ui-mario.github.io/RNmap/page/AR/webview/index.html',
           }}
         />
       </View>
