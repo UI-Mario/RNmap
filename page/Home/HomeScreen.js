@@ -8,13 +8,22 @@ import {
   Button,
   TouchableOpacity,
   TouchableHighlight,
+  Linking,
+  Dimensions,
 } from 'react-native';
+
 import {MapView, Marker, Polyline, Polygon, MapType} from 'react-native-amap3d';
+
+import {Overlay, SearchBar} from 'react-native-elements';
+
+const {height, width} = Dimensions.get('window');
 
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      curentId: 0,
+      isVisible: false,
       isloading: true,
       detailListData: [],
       coordinate: {
@@ -27,6 +36,11 @@ export default class HomeScreen extends Component {
   componentDidMount() {
     this.getDetailList();
   }
+
+  open = () => {
+    let url = 'https://ui-mario.github.io/RNmap/page/AR/webview/test.html';
+    Linking.openURL(url);
+  };
 
   getDetailList = () => {
     const url =
@@ -47,10 +61,15 @@ export default class HomeScreen extends Component {
         image={item.shot}
         // color="red"
         coordinate={item.location}
-        title="hhhh">
+        title={item.title}>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => this.props.navigation.navigate('DetailPage', item)}>
+          onPress={() => {
+            this.setState({
+              isVisible: true,
+              curentId: item.id,
+            });
+          }}>
           <View style={styles.customInfoWindow}>
             <Text>{item.name}</Text>
           </View>
@@ -71,6 +90,36 @@ export default class HomeScreen extends Component {
             />
           </TouchableOpacity>
         </View>
+        <Overlay
+          isVisible={this.state.isVisible}
+          windowBackgroundColor="rgba(255, 255, 255, .5)"
+          overlayBackgroundColor="#fff"
+          width={(width / 4) * 2}
+          height={(width / 4) * 2}
+          borderRadius={width / 4}
+          onBackdropPress={() => this.setState({isVisible: false})}>
+          <View style={styles.overlayercontainer}>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({
+                  isVisible: false,
+                });
+                this.props.navigation.navigate(
+                  'DetailPage',
+                  this.state.detailListData[this.state.curentId],
+                );
+              }}>
+              <View>
+                <Text>详情</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.open}>
+              <View>
+                <Text>AR</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </Overlay>
         <MapView
           locationEnabled={true}
           showsCompass={true}
@@ -78,7 +127,6 @@ export default class HomeScreen extends Component {
           showsLocationButton={true}
           draggable
           coordinate={this.state.coordinate}
-          // mapType={MapType.Night}
           zoomLevel={20}
           zoomEnabled={true}
           scrollEnabled={true}
@@ -116,6 +164,13 @@ const styles = {
   test: {
     width: '100%',
     height: '100%',
+  },
+  overlayercontainer: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
   },
   panoramaIcon: {
     width: '100%',

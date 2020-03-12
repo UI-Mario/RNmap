@@ -40,8 +40,6 @@ export default class DetailList extends Component {
   };
 
   renderItem = item => {
-    const unFillUrl = 'https://s2.ax1x.com/2020/03/10/8FkfsK.png';
-    const fillUrl = 'https://s2.ax1x.com/2020/03/10/8FAWfs.png';
     return (
       // 列表
       <View style={styles.listitem}>
@@ -62,8 +60,11 @@ export default class DetailList extends Component {
           </View>
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => console.log('yes')}>
-            <Image source={{uri: unFillUrl}} style={styles.love} />
+            onPress={() => this.props.navigation.navigate('DetailPage', item)}>
+            <Image
+              source={require('../../img/detail.png')}
+              style={styles.love}
+            />
           </TouchableOpacity>
         </View>
       </View>
