@@ -15,7 +15,7 @@
   "author": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:nicolocarpignoli/nicolocarpignoli.github.io.git"
+    "url": "git@github.com:UI-Mario/RNmap.git"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
