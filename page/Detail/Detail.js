@@ -10,6 +10,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {SearchBar, Icon} from 'react-native-elements';
 
 import DetailList from './DetailList';
 
@@ -31,12 +32,12 @@ export default class Detail extends Component {
       data_xb: [],
       data_wlxb: [],
       data_gxb: [],
+      search: '',
     };
   }
 
   componentDidMount() {
     this.getDetailList();
-    this._category();
   }
 
   getDetailList = () => {
@@ -45,7 +46,7 @@ export default class Detail extends Component {
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        // console.log(data.data);
+        this._category(data.data);
         this.setState({
           isloading: false,
           detailListData: data.data,
@@ -56,9 +57,9 @@ export default class Detail extends Component {
   _renderTabBar = () => {
     return (
       <DefaultTabBar
-        backgroundColor={'#1296db'}
-        activeTextColor={'#fff'}
-        inactiveTextColor={'#fff'}
+        backgroundColor={'#fff'}
+        activeTextColor={'#1296db'}
+        inactiveTextColor={'#8a8a8a'}
         textStyle={styles.tabBarText}
         underlineStyle={styles.tabBarUnderline}
         style={{height: 35}}
@@ -66,28 +67,50 @@ export default class Detail extends Component {
     );
   };
 
-  _category = () => {};
+  _category = data => {
+    var _data_xb = data.filter(i => i.where === '信息学部');
+    var _data_wlxb = data.filter(i => i.where === '文理学部');
+    var _data_gxb = data.filter(i => i.where === '工学部');
+    this.setState({
+      data_xb: _data_xb,
+      data_gxb: _data_gxb,
+      data_wlxb: _data_wlxb,
+    });
+  };
+
+  updateSearch = search => {
+    this.setState({search: search});
+  };
+
+  temp = () => {
+    return (
+      <Icon
+        reverse
+        name="ios-american-football"
+        type="ionicon"
+        color="#517fa4"
+      />
+    );
+  };
 
   renderDetail = () => {
+    const search = this.state.search;
+
     if (this.state.isloading) {
       return (
         <View style={styles.container}>
-          <View style={styles.totalTitle}>
-            <Text style={{color: '#fff', fontSize: 16}}>推荐景点</Text>
-          </View>
           <ActivityIndicator size="large" />
         </View>
       );
     }
     return (
       <View style={styles.container}>
-        <View style={styles.totalTitle}>
-          <Text style={{color: '#fff', fontSize: 16}}>推荐景点</Text>
-        </View>
-        <ScrollableTabView
-          initialPage={0}
-          renderTabBar={this._renderTabBar}
-          stickyHeaderIndices={[1]}>
+        <SearchBar
+          placeholder="Type Here..."
+          onChangeText={this.updateSearch}
+          value={search}
+        />
+        <ScrollableTabView initialPage={0} renderTabBar={this._renderTabBar}>
           <ScrollView tabLabel="推荐  " style={styles.recommand}>
             <View style={styles.swiperContainer}>
               <SwiperComponent />
@@ -99,17 +122,17 @@ export default class Detail extends Component {
           </ScrollView>
           <DetailList
             tabLabel="信息学部"
-            detailListData={this.state.detailListData}
+            detailListData={this.state.data_xb}
             navigation={this.props.navigation}
           />
           <DetailList
             tabLabel="文理学部"
-            detailListData={this.state.detailListData}
+            detailListData={this.state.data_wlxb}
             navigation={this.props.navigation}
           />
           <DetailList
-            tabLabel="工学部 "
-            detailListData={this.state.detailListData}
+            tabLabel="工学部  "
+            detailListData={this.state.data_gxb}
             navigation={this.props.navigation}
           />
         </ScrollableTabView>
@@ -127,13 +150,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#e6e6e6',
   },
-  totalTitle: {
-    width: '100%',
-    height: 45,
-    backgroundColor: '#1296db',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   recommand: {
     width: '100%',
   },
@@ -150,7 +166,7 @@ const styles = StyleSheet.create({
   tabBarUnderline: {
     width: 30,
     marginHorizontal: (width - 24 * 4) / 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#1296db',
     borderRadius: 4,
     marginBottom: 2,
   },

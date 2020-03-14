@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Dimensions} from 'react-native';
 import {WebView} from 'react-native-webview';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
 
@@ -23,9 +24,10 @@ export default class DetailPage extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>{this.state.data.name}</Text>
-        <View style={styles.webContain}>
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>{this.state.data.name}</Text>
+        <Text style={styles.subTitle}>{this.state.data.title}</Text>
+        <View style={styles.webContainer}>
           <WebView
             // bounces={true}
             scalesPageToFit={false}
@@ -37,16 +39,18 @@ export default class DetailPage extends Component {
                   frameborder="no" 
                   framespacing="0" 
                   allowfullscreen="true"
-                  style="width:100%;"> 
+                  style="width:100%; height: 100%;"> 
                 </iframe>`,
             }}
-            style={{
-              width: '100%',
-              height: 330,
-              // eslint-disable-next-line prettier/prettier
-            }} />
+          />
         </View>
-      </View>
+        <View>
+          <View>
+            <Text>简介</Text>
+          </View>
+          <Text>{this.state.data.content}</Text>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -56,9 +60,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  webContain: {
+  title: {
+    fontSize: 16,
+    marginLeft: 8,
+    marginTop: 4,
+  },
+  subTitle: {
+    fontSize: 12,
+    color: '#cdcdcd',
+    marginLeft: 8,
+  },
+  webContainer: {
     width: '100%',
-    height: 300,
+    height: 200,
     // backgroundColor: 'black',
   },
 });
