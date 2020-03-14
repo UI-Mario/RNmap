@@ -40,6 +40,8 @@ target 'RNtest09' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'react-native-viewpager', :path => '../node_modules/@react-native-community/viewpager'
+
   target 'RNtest09Tests' do
     inherit! :search_paths
     # Pods for testing

@@ -10,24 +10,6 @@ export default class SettingScreen extends Component {
     };
   }
 
-  componentDidMount() {
-    this.getData();
-  }
-
-  // TODO
-  getData = () => {
-    const url = 'http://api.bilibili.cn/recommend';
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        this.setState({
-          isloading: false,
-          videolistData: data,
-        });
-      });
-  };
-
   render() {
     return (
       <View style={styles.container}>
