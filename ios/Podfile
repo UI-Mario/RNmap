@@ -44,6 +44,8 @@ target 'RNtest09' do
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 
+  pod 'RNGLModelView', :path => '../node_modules/react-native-gl-model-view'
+
   target 'RNtest09Tests' do
     inherit! :search_paths
     # Pods for testing
