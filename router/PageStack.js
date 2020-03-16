@@ -19,10 +19,10 @@ const PageStack = createStackNavigator({
     screen: HomeScreen,
     navigationOptions: navOptionHandler,
   },
-  Temp: {
-    screen: Temp,
-    navigationOptions: navOptionHandler,
-  },
+  // Temp: {
+  //   screen: Temp,
+  //   navigationOptions: navOptionHandler,
+  // },
   PanoramaScreen: {
     screen: PanoramaScreen,
     navigationOptions: PaOptions,

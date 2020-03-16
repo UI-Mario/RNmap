@@ -10,8 +10,8 @@ import {
   Dimensions,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {SearchBar, Icon} from 'react-native-elements';
-
+import {SearchBar} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import DetailList from './DetailList';
 
 import ScrollableTabView, {
@@ -32,7 +32,6 @@ export default class Detail extends Component {
       data_xb: [],
       data_wlxb: [],
       data_gxb: [],
-      search: '',
     };
   }
 
@@ -78,21 +77,6 @@ export default class Detail extends Component {
     });
   };
 
-  updateSearch = search => {
-    this.setState({search: search});
-  };
-
-  temp = () => {
-    return (
-      <Icon
-        reverse
-        name="ios-american-football"
-        type="ionicon"
-        color="#517fa4"
-      />
-    );
-  };
-
   renderDetail = () => {
     const search = this.state.search;
 
@@ -105,11 +89,6 @@ export default class Detail extends Component {
     }
     return (
       <View style={styles.container}>
-        <SearchBar
-          placeholder="Type Here..."
-          onChangeText={this.updateSearch}
-          value={search}
-        />
         <ScrollableTabView initialPage={0} renderTabBar={this._renderTabBar}>
           <ScrollView tabLabel="推荐  " style={styles.recommand}>
             <View style={styles.swiperContainer}>

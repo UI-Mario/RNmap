@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.reactnativecommunity.viewpager.RNCViewPagerPackage;
 import org.reactnative.camera.RNCameraPackage;
 import cn.qiuxiang.react.geolocation.AMapGeolocationPackage;
