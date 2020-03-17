@@ -13,6 +13,7 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
+import DetailListItem from '../Detail/DetailListItem';
 
 import ScrollableTabView, {
   ScrollableTabBar,
@@ -29,6 +30,8 @@ export default class SearchScreen extends Component {
     this.state = {
       isloading: true,
       detailListData: [],
+      searchListData: [],
+      notFound: false,
       search: '',
     };
   }
@@ -50,23 +53,63 @@ export default class SearchScreen extends Component {
       });
   };
 
-  updateSearch = search => {
-    this.setState({search: search});
-    console.log(search);
+  renderItem = item => {
+    return <DetailListItem item={item} navigation={this.props.navigation} />;
   };
 
-  renderDetail = () => {
-    const search = this.state.search;
-
-    if (this.state.isloading) {
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator size="large" />
-        </View>
-      );
+  updateSearch = search => {
+    const temp = [];
+    this.setState({search: search, searchListData: temp, notFound: false});
+    if (search !== '') {
+      this.startSearch();
+      let result = [];
+      const data = this.state.detailListData;
+      for (let i = 0; i < data.length; i++) {
+        if (
+          data[i].name.indexOf(search) !== -1 ||
+          search.indexOf(data[i].name) !== -1
+        ) {
+          result.push(data[i]);
+        }
+      }
+      this.setState({
+        notFound: result.length === 0,
+        searchListData: result,
+      });
     }
+    this.cancelSearch();
+  };
+
+  showSearchOutput = () => {
+    if (this.state.notFound === true) {
+      return <Text>Not Found~~</Text>;
+    } else {
+      return this.state.searchListData.map(this.renderItem);
+    }
+  };
+
+  showLoading = () => {
+    if (this.state.isloading) {
+      return <ActivityIndicator size="large" />;
+    }
+  };
+
+  startSearch = () => {
+    this.setState({
+      isloading: true,
+    });
+  };
+
+  cancelSearch = () => {
+    this.setState({
+      isloading: false,
+    });
+  };
+
+  renderSearch = () => {
+    const search = this.state.search;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.searchBarContainer}>
           <SearchBar
             ref={'searchBar'}
@@ -92,6 +135,8 @@ export default class SearchScreen extends Component {
             }}
             onChangeText={this.updateSearch}
             value={search}
+            onClear={this.cancelSearch}
+            onCancel={this.cancelSearch}
             // showLoading={true}
           />
           <TouchableOpacity
@@ -102,12 +147,16 @@ export default class SearchScreen extends Component {
             </View>
           </TouchableOpacity>
         </View>
-      </View>
+        <View style={styles.listContainer}>
+          {this.showLoading()}
+          {this.showSearchOutput()}
+        </View>
+      </ScrollView>
     );
   };
 
   render() {
-    return this.renderDetail();
+    return this.renderSearch();
   }
 }
 
@@ -123,5 +172,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  listContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
