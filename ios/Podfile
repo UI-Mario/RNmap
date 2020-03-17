@@ -46,6 +46,8 @@ target 'RNtest09' do
 
   pod 'RNGLModelView', :path => '../node_modules/react-native-gl-model-view'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'RNtest09Tests' do
     inherit! :search_paths
     # Pods for testing

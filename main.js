@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import PageStack from './router/PageStack';
 import SettingsScreen from './page/Setting/SettingScreen';
 import DetailStack from './router/DetailStack';
+import Model3d from './page/3d/3d';
 
 const navOptionHandler = navigation => ({
   header: null,
@@ -54,7 +55,7 @@ const TabNavigator = createBottomTabNavigator({
     },
   },
   Settings: {
-    screen: SettingsScreen,
+    screen: Model3d,
     navigationOptions: {
       tabBarLabel: 'Setting',
       tabBarIcon: ({focused}) => {

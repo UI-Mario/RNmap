@@ -43,7 +43,7 @@ export default class DetailListItem extends Component {
           </View>
           <View style={styles.iconContainer}>
             <TouchableOpacity activeOpacity={0.8} onPress={this.open}>
-              <Image source={require('../../img/ar.png')} style={styles.love} />
+              <Image source={require('../../img/ar.png')} style={styles.ar} />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
@@ -52,7 +52,7 @@ export default class DetailListItem extends Component {
               }>
               <Image
                 source={require('../../img/detail.png')}
-                style={styles.love}
+                style={styles.ar}
               />
             </TouchableOpacity>
           </View>
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
   },
-  love: {
+  ar: {
     // position: 'absolute',
     // bottom: 5,
     // right: 10,

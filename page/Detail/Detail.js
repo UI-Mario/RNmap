@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {SearchBar} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/AntDesign';
 import DetailList from './DetailList';
 
 import ScrollableTabView, {
@@ -32,6 +32,7 @@ export default class Detail extends Component {
       data_xb: [],
       data_wlxb: [],
       data_gxb: [],
+      search: '',
     };
   }
 
@@ -77,6 +78,11 @@ export default class Detail extends Component {
     });
   };
 
+  updateSearch = search => {
+    this.setState({search: search});
+    console.log(search);
+  };
+
   renderDetail = () => {
     const search = this.state.search;
 
@@ -89,6 +95,34 @@ export default class Detail extends Component {
     }
     return (
       <View style={styles.container}>
+        <View style={styles.searchBarContainer}>
+          <SearchBar
+            ref={'searchBar'}
+            placeholder="Type Here..."
+            platform="android"
+            searchIcon={<Icon name="search1" size={24} color="#cdcdcd" />}
+            containerStyle={{
+              width: '94%',
+              height: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            inputContainerStyle={{
+              borderRadius: 100,
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#e6e6e6',
+              alignItems: 'center',
+            }}
+            inputStyle={{
+              color: '#515151',
+              fontSize: 14,
+            }}
+            onChangeText={this.updateSearch}
+            value={search}
+            // showLoading={true}
+          />
+        </View>
         <ScrollableTabView initialPage={0} renderTabBar={this._renderTabBar}>
           <ScrollView tabLabel="推荐  " style={styles.recommand}>
             <View style={styles.swiperContainer}>
@@ -128,6 +162,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#e6e6e6',
+  },
+  searchBarContainer: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   recommand: {
     width: '100%',
