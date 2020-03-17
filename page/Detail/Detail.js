@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  StatusBar,
   Image,
   ActivityIndicator,
   TouchableOpacity,
@@ -95,33 +96,25 @@ export default class Detail extends Component {
     }
     return (
       <View style={styles.container}>
-        <View style={styles.searchBarContainer}>
-          <SearchBar
-            ref={'searchBar'}
-            placeholder="Type Here..."
-            platform="android"
-            searchIcon={<Icon name="search1" size={24} color="#cdcdcd" />}
-            containerStyle={{
-              width: '94%',
-              height: '100%',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            inputContainerStyle={{
-              borderRadius: 100,
-              width: '100%',
-              height: '100%',
-              backgroundColor: '#e6e6e6',
-              alignItems: 'center',
-            }}
-            inputStyle={{
-              color: '#515151',
-              fontSize: 14,
-            }}
-            onChangeText={this.updateSearch}
-            value={search}
-            // showLoading={true}
-          />
+        <View style={styles.topBar}>
+          <View style={styles.avatarContainer}>
+            <Image
+              style={styles.avatarIcon}
+              source={require('../../img/user.png')}
+            />
+          </View>
+          <View style={styles.searchButton}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => this.props.navigation.navigate('SearchScreen')}>
+              <Icon name="search1" size={24} color="#cdcdcd" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.socialIcons}>
+            <Icon name="github" size={24} color="#cdcdcd" />
+            <Icon name="github" size={24} color="#cdcdcd" />
+            <Icon name="github" size={24} color="#cdcdcd" />
+          </View>
         </View>
         <ScrollableTabView initialPage={0} renderTabBar={this._renderTabBar}>
           <ScrollView tabLabel="推荐  " style={styles.recommand}>
@@ -162,6 +155,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#e6e6e6',
+  },
+  topBar: {
+    height: 60,
+    width: '100%',
+    backgroundColor: '#fff',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  avatarIcon: {
+    width: 30,
+    height: 30,
+    borderRadius: 100,
+  },
+  searchButton: {
+    width: '50%',
+    height: 35,
+    backgroundColor: '#e6e6e6',
+    borderRadius: 100,
+    justifyContent: 'center',
+    paddingLeft: 5,
+  },
+  socialIcons: {
+    width: '30%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   searchBarContainer: {
     width: '100%',

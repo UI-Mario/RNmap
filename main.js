@@ -55,7 +55,7 @@ const TabNavigator = createBottomTabNavigator({
     },
   },
   Settings: {
-    screen: Model3d,
+    screen: SettingsScreen,
     navigationOptions: {
       tabBarLabel: 'Setting',
       tabBarIcon: ({focused}) => {
