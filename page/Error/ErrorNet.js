@@ -9,7 +9,7 @@ export default class ErrorScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>404</Text>
+        <Text>请检查网络连接</Text>
       </View>
     );
   }

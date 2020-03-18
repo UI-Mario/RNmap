@@ -11,7 +11,6 @@ import {
   Dimensions,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import DetailList from './DetailList';
 

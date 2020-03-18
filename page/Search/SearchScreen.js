@@ -15,15 +15,6 @@ import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import DetailListItem from '../Detail/DetailListItem';
 
-import ScrollableTabView, {
-  ScrollableTabBar,
-  DefaultTabBar,
-} from 'react-native-scrollable-tab-view';
-
-import SwiperComponent from '../../component/swiper';
-
-const {height, width} = Dimensions.get('window');
-
 export default class SearchScreen extends Component {
   constructor(props) {
     super(props);
