@@ -47,6 +47,8 @@ export default class DetailPage extends Component {
         <View>
           <View>
             <Text>简介</Text>
+            <Text>audio</Text>
+            <Text>3D Model View</Text>
           </View>
           <Text>{this.state.data.content}</Text>
         </View>
