@@ -67,7 +67,17 @@ export default class GestureControl extends Component {
   renderButton(label, method) {
     return (
       <TouchableOpacity onPress={method}>
-        <Text style={styles.button}>{label}</Text>
+        <View
+          style={{
+            width: 100,
+            height: '60%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#1296db',
+            borderRadius: 20,
+          }}>
+          <Text style={styles.button}>{label}</Text>
+        </View>
       </TouchableOpacity>
     );
   }
@@ -97,8 +107,18 @@ export default class GestureControl extends Component {
           style={styles.container}
         />
         <Animated.View style={styles.buttons}>
-          {this.renderButton('zoom in', this.zoom.bind(this, 0.8))}
-          {this.renderButton('zoom out', this.zoom.bind(this, -0.8))}
+          <View
+            style={{
+              width: '100%',
+              height: 80,
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              flexDirection: 'row',
+              // backgroundColor: '#1296db',
+            }}>
+            {this.renderButton('zoom in', this.zoom.bind(this, 0.8))}
+            {this.renderButton('zoom out', this.zoom.bind(this, -0.8))}
+          </View>
         </Animated.View>
       </View>
     );
@@ -109,5 +129,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
+  },
+  button: {
+    fontSize: 16,
+    color: '#fff',
   },
 });

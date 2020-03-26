@@ -109,13 +109,8 @@ export default class HomeScreen extends Component {
                   this.state.detailListData[this.state.curentId],
                 );
               }}>
-              <View
-                style={{
-                  width: '100%',
-                  height: '50%',
-                  backgroundColor: '#1296db',
-                }}>
-                <Text style={{color: '#fff'}}>详情</Text>
+              <View>
+                <Text>详情</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.open}>

@@ -110,9 +110,9 @@ export default class Detail extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.socialIcons}>
-            <Icon name="github" size={24} color="#cdcdcd" />
-            <Icon name="github" size={24} color="#cdcdcd" />
-            <Icon name="github" size={24} color="#cdcdcd" />
+            <Icon name="tool" size={24} color="#cdcdcd" />
+            <Icon name="download" size={24} color="#cdcdcd" />
+            <Icon name="twitter" size={24} color="#cdcdcd" />
           </View>
         </View>
         <ScrollableTabView initialPage={0} renderTabBar={this._renderTabBar}>

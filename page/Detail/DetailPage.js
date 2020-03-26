@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -44,13 +51,22 @@ export default class DetailPage extends Component {
             }}
           />
         </View>
-        <View>
-          <View>
-            <Text>简介</Text>
-            <Text>audio</Text>
-            <Text>3D Model View</Text>
+        <View style={styles.contentContain}>
+          <View style={styles.top}>
+            <View style={styles.left}>
+              <Text style={{color: '#1296db'}}>简介</Text>
+              <Text>audio</Text>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => this.props.navigation.navigate('ModelScreen')}>
+              <Image
+                source={require('../../img/model.png')}
+                style={styles.ar}
+              />
+            </TouchableOpacity>
           </View>
-          <Text>{this.state.data.content}</Text>
+          <Text style={styles.content}>{this.state.data.content}</Text>
         </View>
       </ScrollView>
     );
@@ -76,5 +92,31 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     // backgroundColor: 'black',
+  },
+  contentContain: {
+    padding: 8,
+  },
+  top: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 6,
+  },
+  left: {
+    width: '20%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+  ar: {
+    // position: 'absolute',
+    // bottom: 5,
+    // right: 10,
+    width: 20,
+    height: 20,
+    zIndex: 10,
+    marginRight: 10,
+  },
+  content: {
+    fontStyle: 'italic',
   },
 });
