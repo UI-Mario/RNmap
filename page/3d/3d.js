@@ -91,9 +91,9 @@ export default class GestureControl extends Component {
           model={{
             uri: 'model.obj',
           }}
-          texture={{
-            uri: 'model.png',
-          }}
+          // texture={{
+          //   uri: 'model.jpg',
+          // }}
           onStartShouldSetResponder={() => true}
           onResponderRelease={this.onMoveEnd}
           onResponderMove={this.onMove}
@@ -101,6 +101,7 @@ export default class GestureControl extends Component {
           tint={{r: 1.0, g: 1.0, b: 1.0, a: 1.0}}
           scale={1}
           translateZ={translateZ}
+          // translateX={0}
           translateY={-1}
           rotateX={rotateX}
           rotateZ={rotateZ}

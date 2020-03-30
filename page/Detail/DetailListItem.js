@@ -16,7 +16,7 @@ export default class DetailListItem extends Component {
   }
 
   open = () => {
-    let url = 'https://nicolocarpignoli.github.io/ar-playground/index.html';
+    let url = 'https://ui-mario.github.io/RNmap/page/AR/webview/test.html';
     Linking.openURL(url);
   };
 
