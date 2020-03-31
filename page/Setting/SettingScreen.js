@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, StatusBar} from 'react-native';
 
+import {ListItem} from 'react-native-elements';
+
+const list = [
+  {
+    title: '详情',
+    icon: 'archive',
+  },
+  {
+    title: '关于我们',
+    icon: 'album',
+  },
+];
+
 export default class SettingScreen extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +37,15 @@ export default class SettingScreen extends Component {
           <Text>jjjj</Text>
         </View>
         <View style={styles.bottom}>
-          <Text>UUU</Text>
+          {list.map((item, i) => (
+            <ListItem
+              key={i}
+              title={item.title}
+              leftIcon={{name: item.icon}}
+              bottomDivider
+              chevron
+            />
+          ))}
         </View>
       </View>
     );
