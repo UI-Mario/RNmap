@@ -15,14 +15,14 @@ export default class GestureControl extends Component {
   constructor() {
     super();
     this.state = {
-      rotateX: new Animated.Value(0),
+      rotateX: new Animated.Value(180),
       rotateZ: new Animated.Value(0),
 
       fromXY: undefined,
       valueXY: undefined,
 
       zoom: -3,
-      translateZ: new Animated.Value(-2),
+      translateZ: new Animated.Value(-15),
     };
   }
 
@@ -36,6 +36,7 @@ export default class GestureControl extends Component {
       useNativeDriver: true,
       duration: 300,
     }).start();
+    console.log('Yes');
   };
 
   onMoveEnd = () => {
@@ -89,20 +90,20 @@ export default class GestureControl extends Component {
       <View style={styles.container}>
         <AnimatedModelView
           model={{
-            uri: 'temp.obj',
+            uri: 'object.obj',
           }}
-          texture={{
-            uri: 'temp.jpg',
-          }}
+          // texture={{
+          //   uri: 'temp.jpg',
+          // }}
           onStartShouldSetResponder={() => true}
           onResponderRelease={this.onMoveEnd}
           onResponderMove={this.onMove}
           animate
           tint={{r: 1.0, g: 1.0, b: 1.0, a: 1.0}}
-          scale={1}
+          scale={0.1}
           translateZ={translateZ}
-          // translateX={0}
-          translateY={-1}
+          translateX={1}
+          translateY={-8}
           rotateX={rotateX}
           rotateZ={rotateZ}
           style={styles.container}
