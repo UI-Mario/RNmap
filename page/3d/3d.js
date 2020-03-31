@@ -89,11 +89,11 @@ export default class GestureControl extends Component {
       <View style={styles.container}>
         <AnimatedModelView
           model={{
-            uri: 'model.obj',
+            uri: 'temp.obj',
           }}
-          // texture={{
-          //   uri: 'model.jpg',
-          // }}
+          texture={{
+            uri: 'temp.jpg',
+          }}
           onStartShouldSetResponder={() => true}
           onResponderRelease={this.onMoveEnd}
           onResponderMove={this.onMove}
