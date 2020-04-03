@@ -1,5 +1,7 @@
 package com.rntest09;
 
+import android.os.Bundle;
+import org.devio.rn.splashscreen.SplashScreen;//导入相关包
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
@@ -11,5 +13,11 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "RNtest09";
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    SplashScreen.show(this);   //show(this,true)隐藏statusBar
+    super.onCreate(savedInstanceState);
   }
 }
