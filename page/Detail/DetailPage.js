@@ -32,6 +32,7 @@ export default class DetailPage extends Component {
   }
 
   playAudio = () => {
+    whoosh.setNumberOfLoops(-1);
     if (!this.state.isplay) {
       // console.log('Play');
       whoosh.play();
