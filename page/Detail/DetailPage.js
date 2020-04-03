@@ -8,20 +8,62 @@ import {
   Image,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
+import Icon from 'react-native-vector-icons/AntDesign';
 import {ScrollView} from 'react-native-gesture-handler';
 
+import Sound from 'react-native-sound';
+
 const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
+
+let url = 'http://q6z705tdq.bkt.clouddn.com/audio.mp3';
+let whoosh = new Sound(url, '', err => {
+  if (err) {
+    return console.log(err);
+  }
+});
 
 export default class DetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
+      isplay: false,
     };
   }
 
+  playAudio = () => {
+    if (!this.state.isplay) {
+      // console.log('Play');
+      whoosh.play();
+      this.setState({
+        isplay: true,
+      });
+    } else {
+      // console.log('pause');
+      whoosh.pause();
+      this.setState({
+        isplay: false,
+      });
+    }
+  };
+
+  showPlayIcon = () => {
+    if (!this.state.isplay) {
+      return <Icon name="play" size={20} color="#1296db" />;
+    } else {
+      return (
+        <Icon
+          name="pause"
+          size={20}
+          color="#1296db"
+          backgroundColor="#cdcdcd"
+        />
+      );
+    }
+  };
+
   componentDidMount() {
-    console.log(this.props.navigation.state.params);
+    // console.log(this.props.navigation.state.params);
     const data = this.props.navigation.state.params;
 
     this.setState({
@@ -55,7 +97,11 @@ export default class DetailPage extends Component {
           <View style={styles.top}>
             <View style={styles.left}>
               <Text style={{color: '#1296db'}}>简介</Text>
-              <Text>audio</Text>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => this.playAudio()}>
+                {this.showPlayIcon()}
+              </TouchableOpacity>
             </View>
             <TouchableOpacity
               activeOpacity={0.8}
