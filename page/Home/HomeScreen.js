@@ -71,7 +71,7 @@ export default class HomeScreen extends Component {
             });
           }}>
           <View style={styles.customInfoWindow}>
-            <Text>{item.name}</Text>
+            <Text style={{color: '#515151'}}>{item.name}</Text>
           </View>
         </TouchableOpacity>
       </MapView.Marker>
@@ -184,12 +184,14 @@ const styles = {
     height: '100%',
   },
   customInfoWindow: {
-    backgroundColor: '#8bc34a',
+    // backgroundColor: '#8bc34a',
+    backgroundColor: '#fff',
     padding: 10,
     borderRadius: 10,
     elevation: 4,
     borderWidth: 2,
-    borderColor: '#689F38',
+    // borderColor: '#689F38',
+    borderColor: '#1296db',
     marginBottom: 5,
   },
   customMarker: {
