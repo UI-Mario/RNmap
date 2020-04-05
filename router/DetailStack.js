@@ -18,7 +18,13 @@ const DetailStack = createStackNavigator({
   },
   DetailPage: {
     screen: DetailPage,
-    // navigationOptions: navOptionHandler,
+    navigationOptions: {
+      title: '详情页',
+      headerTitleStyle: {
+        fontWeight: '500',
+        fontSize: 16,
+      },
+    },
   },
   SearchScreen: {
     screen: SearchScreen,
@@ -26,6 +32,13 @@ const DetailStack = createStackNavigator({
   },
   ModelScreen: {
     screen: ModelScreen,
+    navigationOptions: {
+      title: '3d Model',
+      headerTitleStyle: {
+        fontWeight: '500',
+        fontSize: 16,
+      },
+    },
   },
 });
 

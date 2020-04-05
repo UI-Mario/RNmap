@@ -1,15 +1,34 @@
 import React from 'react';
 import {StyleSheet, Image} from 'react-native';
 import {createAppContainer, NavigationEvents} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import PageStack from './router/PageStack';
 import SettingsScreen from './page/Setting/SettingScreen';
 import DetailStack from './router/DetailStack';
-import Model3d from './page/3d/3d';
+import Scanner from './page/Home/Scanner';
+import PanoramaScreen from './page/Panorama/PanoramaScreen';
 
 const navOptionHandler = navigation => ({
   header: null,
+});
+
+const navTransparent = navigation => ({
+  //非自定义返回文字 style
+  headerBackTitleStyle: {
+    color: 'white',
+  },
+  title: 'back',
+  headerStyle: {
+    backgroundColor: 'transparent',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+  //背景透明度 不会影响文字
+  headerTransparent: true,
 });
 
 const TabNavigator = createBottomTabNavigator({
@@ -78,6 +97,18 @@ const TabNavigator = createBottomTabNavigator({
   },
 });
 
+const TaskNavigator = createStackNavigator({
+  Tab: {screen: TabNavigator, navigationOptions: navOptionHandler},
+  Scanner: {
+    screen: Scanner,
+    navigationOptions: navTransparent,
+  },
+  PanoramaScreen: {
+    screen: PanoramaScreen,
+    navigationOptions: navTransparent,
+  },
+});
+
 const styles = StyleSheet.create({
   tabBarIcon: {
     width: 21,
@@ -85,4 +116,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(TaskNavigator);

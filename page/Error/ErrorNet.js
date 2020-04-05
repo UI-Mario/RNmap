@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Image, Dimensions} from 'react-native';
+
+const {height, width} = Dimensions.get('window');
 
 export default class ErrorScreen extends Component {
   constructor(props) {
@@ -9,7 +11,10 @@ export default class ErrorScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>请检查网络连接</Text>
+        <Image
+          style={{width: '100%', height: height}}
+          source={require('../../Assets/Images/error.png')}
+        />
       </View>
     );
   }

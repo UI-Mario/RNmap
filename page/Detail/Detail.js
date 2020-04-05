@@ -9,10 +9,12 @@ import {
   TouchableOpacity,
   Button,
   Dimensions,
+  Alert,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
 import DetailList from './DetailList';
+import ErrorScreen from '../Error/ErrorNet';
 
 import ScrollableTabView, {
   ScrollableTabBar,
@@ -33,6 +35,7 @@ export default class Detail extends Component {
       data_wlxb: [],
       data_gxb: [],
       search: '',
+      fetchError: false,
     };
   }
 
@@ -50,6 +53,13 @@ export default class Detail extends Component {
         this.setState({
           isloading: false,
           detailListData: data.data,
+          fetchError: false,
+        });
+      })
+      .catch(e => {
+        console.log('错误:', e);
+        this.setState({
+          fetchError: true,
         });
       });
   };
@@ -83,16 +93,25 @@ export default class Detail extends Component {
     console.log(search);
   };
 
+  renderList = (data, name) => {
+    if (this.state.isloading && !this.state.fetchError) {
+      return <ActivityIndicator size="large" />;
+    } else if (this.state.isloading && this.state.fetchError) {
+      return <ErrorScreen />;
+    } else {
+      return (
+        <DetailList
+          tabLabel={name}
+          detailListData={data}
+          navigation={this.props.navigation}
+        />
+      );
+    }
+  };
+
   renderDetail = () => {
     const search = this.state.search;
 
-    if (this.state.isloading) {
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator size="large" />
-        </View>
-      );
-    }
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
@@ -120,26 +139,11 @@ export default class Detail extends Component {
             <View style={styles.swiperContainer}>
               <SwiperComponent />
             </View>
-            <DetailList
-              detailListData={this.state.detailListData}
-              navigation={this.props.navigation}
-            />
+            {this.renderList(this.state.detailListData)}
           </ScrollView>
-          <DetailList
-            tabLabel="信息学部"
-            detailListData={this.state.data_xb}
-            navigation={this.props.navigation}
-          />
-          <DetailList
-            tabLabel="文理学部"
-            detailListData={this.state.data_wlxb}
-            navigation={this.props.navigation}
-          />
-          <DetailList
-            tabLabel="工学部  "
-            detailListData={this.state.data_gxb}
-            navigation={this.props.navigation}
-          />
+          {this.renderList(this.state.data_xb, '信息学部')}
+          {this.renderList(this.state.data_wlxb, '文理学部')}
+          {this.renderList(this.state.data_gxb, '工学部 ')}
         </ScrollableTabView>
       </View>
     );
