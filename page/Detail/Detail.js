@@ -96,12 +96,12 @@ export default class Detail extends Component {
   renderList = (data, name) => {
     if (this.state.isloading && !this.state.fetchError) {
       return <ActivityIndicator size="large" />;
-    } else if (this.state.isloading && this.state.fetchError) {
+    } else if (this.state.fetchError) {
       return <ErrorScreen />;
     } else {
       return (
         <DetailList
-          tabLabel={name}
+          // tabLabel={name}
           detailListData={data}
           navigation={this.props.navigation}
         />
@@ -141,9 +141,15 @@ export default class Detail extends Component {
             </View>
             {this.renderList(this.state.detailListData)}
           </ScrollView>
-          {this.renderList(this.state.data_xb, '信息学部')}
-          {this.renderList(this.state.data_wlxb, '文理学部')}
-          {this.renderList(this.state.data_gxb, '工学部 ')}
+          <View tabLabel="信息学部">
+            {this.renderList(this.state.data_xb, '信息学部')}
+          </View>
+          <View tabLabel="文理学部">
+            {this.renderList(this.state.data_wlxb, '文理学部')}
+          </View>
+          <View tabLabel="工学部 ">
+            {this.renderList(this.state.data_gxb, '工学部 ')}
+          </View>
         </ScrollableTabView>
       </View>
     );
