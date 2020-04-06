@@ -7,6 +7,7 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  StatusBar,
   TouchableHighlight,
   Linking,
   Dimensions,

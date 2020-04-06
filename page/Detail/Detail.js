@@ -124,7 +124,7 @@ export default class Detail extends Component {
       this.setState({
         isRefreshing: false,
       });
-    }, 3000);
+    }, 2000);
   };
 
   renderDetail = () => {
@@ -173,7 +173,19 @@ export default class Detail extends Component {
             {this.renderList(this.state.data_xb, '信息学部')}
           </View>
           <View tabLabel="文理学部">
-            {this.renderList(this.state.data_wlxb, '文理学部')}
+            <ScrollView
+              tabLabel="推荐  "
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.isRefreshing}
+                  onRefresh={this._onRefresh}
+                  colors={['#1296db', '#0061b0']}
+                />
+              }
+              showsVerticalScrollIndicator={false}
+              style={styles.recommand}>
+              {this.renderList(this.state.data_wlxb, '文理学部')}
+            </ScrollView>
           </View>
           <View tabLabel="工学部 ">
             {this.renderList(this.state.data_gxb, '工学部 ')}

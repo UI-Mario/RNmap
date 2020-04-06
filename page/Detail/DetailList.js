@@ -33,12 +33,9 @@ export default class DetailList extends Component {
     }
     const navigation = this.props.navigation;
     return (
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* <SwiperComponent style={styles.swiper} /> */}
-        <View style={styles.listcontainer}>
-          {this.props.detailListData.map(this.renderItem)}
-        </View>
-      </ScrollView>
+      <View style={styles.listcontainer}>
+        {this.props.detailListData.map(this.renderItem)}
+      </View>
     );
   };
 
