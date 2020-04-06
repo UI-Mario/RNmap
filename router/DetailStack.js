@@ -26,10 +26,10 @@ const DetailStack = createStackNavigator({
       },
     },
   },
-  SearchScreen: {
-    screen: SearchScreen,
-    navigationOptions: navOptionHandler,
-  },
+  // SearchScreen: {
+  //   screen: SearchScreen,
+  //   navigationOptions: navOptionHandler,
+  // },
   ModelScreen: {
     screen: ModelScreen,
     navigationOptions: {

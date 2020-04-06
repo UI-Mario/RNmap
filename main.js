@@ -9,6 +9,7 @@ import SettingsScreen from './page/Setting/SettingScreen';
 import DetailStack from './router/DetailStack';
 import Scanner from './page/Home/Scanner';
 import PanoramaScreen from './page/Panorama/PanoramaScreen';
+import SearchScreen from './page/Search/SearchScreen';
 
 const navOptionHandler = navigation => ({
   header: null,
@@ -106,6 +107,10 @@ const TaskNavigator = createStackNavigator({
   PanoramaScreen: {
     screen: PanoramaScreen,
     navigationOptions: navTransparent,
+  },
+  SearchScreen: {
+    screen: SearchScreen,
+    navigationOptions: navOptionHandler,
   },
 });
 
