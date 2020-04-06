@@ -10,6 +10,7 @@ import {
   Button,
   Dimensions,
   Alert,
+  RefreshControl,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -29,6 +30,7 @@ export default class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isRefreshing: false,
       isloading: true,
       detailListData: [],
       data_xb: [],
@@ -109,6 +111,22 @@ export default class Detail extends Component {
     }
   };
 
+  _onRefresh = () => {
+    if (this.state.isRefreshing) {
+      return;
+    }
+    this.setState({
+      isRefreshing: true,
+    });
+    this.getDetailList();
+    setTimeout(() => {
+      this.getDetailList();
+      this.setState({
+        isRefreshing: false,
+      });
+    }, 3000);
+  };
+
   renderDetail = () => {
     const search = this.state.search;
 
@@ -135,7 +153,17 @@ export default class Detail extends Component {
           </View>
         </View>
         <ScrollableTabView initialPage={0} renderTabBar={this._renderTabBar}>
-          <ScrollView tabLabel="推荐  " style={styles.recommand}>
+          <ScrollView
+            tabLabel="推荐  "
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.isRefreshing}
+                onRefresh={this._onRefresh}
+                colors={['#1296db', '#0061b0']}
+              />
+            }
+            showsVerticalScrollIndicator={false}
+            style={styles.recommand}>
             <View style={styles.swiperContainer}>
               <SwiperComponent />
             </View>
