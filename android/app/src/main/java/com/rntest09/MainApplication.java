@@ -1,9 +1,11 @@
 package com.rntest09;
 
+import com.theweflex.react.WeChatPackage; // Add this line
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.theweflex.react.WeChatPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.rnglmodelview.RNGLModelViewPackage;
 import com.zmxv.RNSound.RNSoundPackage;
@@ -32,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          packages.add(new WeChatPackage()); // Add this line
           return packages;
         }
 

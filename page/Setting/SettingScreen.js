@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, StatusBar} from 'react-native';
 
-import {ListItem} from 'react-native-elements';
-
+import {ListItem, Avatar} from 'react-native-elements';
 const list = [
   {
     title: '详情',
@@ -34,6 +33,14 @@ export default class SettingScreen extends Component {
           barStyle="light-content"
         />
         <View style={styles.top}>
+          <Avatar
+            source={{
+              uri:
+                'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+            }}
+            rounded
+            size={110}
+          />
           <Text>jjjj</Text>
         </View>
         <View style={styles.bottom}>
@@ -60,5 +67,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '50%',
     backgroundColor: '#1296db',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -48,6 +48,8 @@ target 'RNtest09' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RCTWeChat', :path => '../node_modules/react-native-wechat'
+
   target 'RNtest09Tests' do
     inherit! :search_paths
     # Pods for testing

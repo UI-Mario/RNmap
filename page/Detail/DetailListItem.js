@@ -8,7 +8,12 @@ import {
   TouchableOpacity,
   Button,
   Linking,
+  Alert,
 } from 'react-native';
+import * as WeChat from 'react-native-wechat';
+
+const wxAppId = 'wx953eb9608772961a'; // 微信开放平台注册的app id
+WeChat.registerApp(wxAppId);
 
 export default class DetailListItem extends Component {
   constructor(props) {
@@ -19,6 +24,47 @@ export default class DetailListItem extends Component {
     let url = 'https://ui-mario.github.io/RNmap/page/AR/webview/test.html';
     Linking.openURL(url);
   };
+
+  shareToFriend() {
+    WeChat.shareToSession({
+      type: 'news',
+      webpageUrl: 'https://www.baidu.com',
+      title: 'Test sharing',
+      description: 'This is a test',
+    })
+      .then(response => {
+        console.log(response);
+        Alert.alert('分享成功');
+      })
+      .catch(error => {
+        let errorCode = Number(error.code);
+        if (errorCode === -2) {
+          Alert.alert('分享已取消');
+        } else {
+          Alert.alert('分享失败');
+        }
+      });
+  }
+  shareToTimeline() {
+    WeChat.shareToTimeline({
+      type: 'news',
+      webpageUrl: 'https://www.baidu.com',
+      title: 'Test sharing',
+      description: 'This is a test',
+    })
+      .then(response => {
+        console.log(response);
+        Alert.alert('分享成功');
+      })
+      .catch(error => {
+        let errorCode = Number(error.code);
+        if (errorCode === -2) {
+          Alert.alert('分享已取消');
+        } else {
+          Alert.alert('分享失败');
+        }
+      });
+  }
 
   render() {
     const item = this.props.item;
@@ -36,7 +82,7 @@ export default class DetailListItem extends Component {
 
         <View style={styles.detailinfo}>
           <View>
-            <Text numberOfLines={2} style={styles.title}>
+            <Text numberOfLines={2} ref="test" style={styles.title}>
               {item.title}
             </Text>
             <Text style={styles.name}>{item.name}</Text>
@@ -52,6 +98,14 @@ export default class DetailListItem extends Component {
               }>
               <Image
                 source={require('../../img/detail.png')}
+                style={styles.ar}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={this.shareToTimeline}>
+              <Image
+                source={require('../../img/share.png')}
                 style={styles.ar}
               />
             </TouchableOpacity>
@@ -100,6 +154,9 @@ const styles = StyleSheet.create({
     height: 20,
     zIndex: 10,
     marginLeft: 7,
+  },
+  title: {
+    color: '#515151',
   },
   name: {
     color: '#cdcdcd',

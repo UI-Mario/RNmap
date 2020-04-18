@@ -6,12 +6,17 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import Sound from 'react-native-sound';
+
+import * as WeChat from 'react-native-wechat';
+const wxAppId = 'wx953eb9608772961a'; // 微信开放平台注册的app id
+WeChat.registerApp(wxAppId);
 
 const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
 
@@ -31,6 +36,14 @@ export default class DetailPage extends Component {
     };
   }
 
+  componentDidMount() {
+    // console.log(this.props.navigation.state.params);
+    const data = this.props.navigation.state.params;
+    this.setState({
+      data: data,
+    });
+  }
+
   playAudio = () => {
     whoosh.setNumberOfLoops(-1);
     if (!this.state.isplay) {
@@ -48,6 +61,48 @@ export default class DetailPage extends Component {
     }
   };
 
+  shareToFriend() {
+    WeChat.shareToSession({
+      type: 'news',
+      webpageUrl: 'https://www.baidu.com',
+      title: 'Test sharing',
+      description: 'This is a test',
+    })
+      .then(response => {
+        console.log(response);
+        Alert.alert('分享成功');
+      })
+      .catch(error => {
+        let errorCode = Number(error.code);
+        if (errorCode === -2) {
+          Alert.alert('分享已取消');
+        } else {
+          Alert.alert('分享失败');
+        }
+      });
+  }
+  
+  shareToTimeline() {
+    WeChat.shareToTimeline({
+      type: 'news',
+      webpageUrl: 'https://www.baidu.com',
+      title: 'Test sharing',
+      description: 'This is a test',
+    })
+      .then(response => {
+        console.log(response);
+        Alert.alert('分享成功');
+      })
+      .catch(error => {
+        let errorCode = Number(error.code);
+        if (errorCode === -2) {
+          Alert.alert('分享已取消');
+        } else {
+          Alert.alert('分享失败');
+        }
+      });
+  }
+
   showPlayIcon = () => {
     if (!this.state.isplay) {
       return <Icon name="play" size={20} color="#1296db" />;
@@ -62,15 +117,6 @@ export default class DetailPage extends Component {
       );
     }
   };
-
-  componentDidMount() {
-    // console.log(this.props.navigation.state.params);
-    const data = this.props.navigation.state.params;
-
-    this.setState({
-      data: data,
-    });
-  }
 
   render() {
     return (
@@ -115,6 +161,22 @@ export default class DetailPage extends Component {
           </View>
           <Text style={styles.content}>{this.state.data.content}</Text>
         </View>
+        <View style={styles.shareLine}>
+          <Text style={styles.shareText}>分享至</Text>
+          <TouchableOpacity activeOpacity={0.8} onPress={this.shareToFriend}>
+            <Image source={require('../../img/wechat.png')} style={styles.ar} />
+          </TouchableOpacity>
+          <TouchableOpacity activeOpacity={0.8} onPress={this.shareToTimeline}>
+            <Image
+              source={require('../../img/wechat-friend.png')}
+              style={styles.ar}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.hr} />
+        <View>
+          <Text>评论</Text>
+        </View>
       </ScrollView>
     );
   }
@@ -123,10 +185,11 @@ export default class DetailPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 16,
+    color: '#515151',
     marginLeft: 8,
     marginTop: 4,
   },
@@ -142,6 +205,7 @@ const styles = StyleSheet.create({
   },
   contentContain: {
     padding: 8,
+    backgroundColor: '#f2f2f2',
   },
   top: {
     justifyContent: 'space-between',
@@ -165,5 +229,26 @@ const styles = StyleSheet.create({
   },
   content: {
     fontStyle: 'italic',
+  },
+  shareLine: {
+    width: '100%',
+    height: 30,
+    marginBottom: 10,
+    marginTop: 10,
+    paddingLeft: 8,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  shareText: {
+    color: '#515151',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginRight: 20,
+  },
+  hr: {
+    width: '100%',
+    height: 20,
+    backgroundColor: '#f2f2f2',
   },
 });

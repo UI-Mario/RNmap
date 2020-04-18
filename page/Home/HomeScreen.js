@@ -16,6 +16,7 @@ import {
 import {MapView, Marker, Polyline, Polygon, MapType} from 'react-native-amap3d';
 
 import {Overlay, SearchBar} from 'react-native-elements';
+import {getAllLocationInfo} from '../../network/request';
 
 const {height, width} = Dimensions.get('window');
 
@@ -28,8 +29,8 @@ export default class HomeScreen extends Component {
       isloading: true,
       detailListData: [],
       coordinate: {
-        latitude: 30.5285286208,
-        longitude: 114.359381429,
+        latitude: 30.5305286208,
+        longitude: 114.364381429,
       },
     };
   }
@@ -44,9 +45,7 @@ export default class HomeScreen extends Component {
   };
 
   getDetailList = () => {
-    const url =
-      'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
-    fetch(url)
+    getAllLocationInfo()
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -111,12 +110,12 @@ export default class HomeScreen extends Component {
                 );
               }}>
               <View>
-                <Text>详情</Text>
+                <Text style={{color: '#515151'}}>详情</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.open}>
               <View>
-                <Text>AR</Text>
+                <Text style={{color: '#515151'}}>AR</Text>
               </View>
             </TouchableOpacity>
           </View>

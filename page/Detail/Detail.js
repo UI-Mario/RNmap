@@ -23,6 +23,7 @@ import ScrollableTabView, {
 } from 'react-native-scrollable-tab-view';
 
 import SwiperComponent from '../../component/swiper';
+import {getAllLocationInfo} from '../../network/request';
 
 const {height, width} = Dimensions.get('window');
 
@@ -46,9 +47,7 @@ export default class Detail extends Component {
   }
 
   getDetailList = () => {
-    const url =
-      'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
-    fetch(url)
+    getAllLocationInfo()
       .then(res => res.json())
       .then(data => {
         this._category(data.data);

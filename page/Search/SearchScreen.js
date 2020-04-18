@@ -14,6 +14,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
 import DetailListItem from '../Detail/DetailListItem';
+import {getAllLocationInfo} from '../../network/request';
 
 export default class SearchScreen extends Component {
   constructor(props) {
@@ -32,9 +33,7 @@ export default class SearchScreen extends Component {
   }
 
   getDetailList = () => {
-    const url =
-      'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
-    fetch(url)
+    getAllLocationInfo()
       .then(res => res.json())
       .then(data => {
         this.setState({

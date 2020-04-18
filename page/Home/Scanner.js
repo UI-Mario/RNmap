@@ -11,7 +11,7 @@ import {
 
 import {RNCamera} from 'react-native-camera';
 import {NavigationActions} from 'react-navigation';
-
+import {getAllLocationInfo} from '../../network/request';
 export default class Scanner extends Component {
   constructor(props) {
     super(props);
@@ -27,9 +27,7 @@ export default class Scanner extends Component {
   }
 
   getDetailList = () => {
-    const url =
-      'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
-    fetch(url)
+    getAllLocationInfo()
       .then(res => res.json())
       .then(data => {
         // console.log(data.data);
