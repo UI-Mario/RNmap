@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
-import DetailList from './DetailList';
+import DetailList from '../../component/DetailList';
 import ErrorScreen from '../Error/ErrorNet';
 
 import ScrollableTabView, {

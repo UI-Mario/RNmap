@@ -10,6 +10,7 @@ import DetailStack from './router/DetailStack';
 import Scanner from './page/Home/Scanner';
 import PanoramaScreen from './page/Panorama/PanoramaScreen';
 import SearchScreen from './page/Search/SearchScreen';
+import ModelScreen from './page/3d/3d';
 
 const navOptionHandler = navigation => ({
   header: null,
@@ -111,6 +112,16 @@ const TaskNavigator = createStackNavigator({
   SearchScreen: {
     screen: SearchScreen,
     navigationOptions: navOptionHandler,
+  },
+  ModelScreen: {
+    screen: ModelScreen,
+    navigationOptions: {
+      title: '3d Model',
+      headerTitleStyle: {
+        fontWeight: '500',
+        fontSize: 16,
+      },
+    },
   },
 });
 

@@ -89,25 +89,19 @@ export default class DetailListItem extends Component {
           </View>
           <View style={styles.iconContainer}>
             <TouchableOpacity activeOpacity={0.8} onPress={this.open}>
-              <Image source={require('../../img/ar.png')} style={styles.ar} />
+              <Image source={require('../img/ar.png')} style={styles.ar} />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() =>
                 this.props.navigation.navigate('DetailPage', item)
               }>
-              <Image
-                source={require('../../img/detail.png')}
-                style={styles.ar}
-              />
+              <Image source={require('../img/detail.png')} style={styles.ar} />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={this.shareToTimeline}>
-              <Image
-                source={require('../../img/share.png')}
-                style={styles.ar}
-              />
+              <Image source={require('../img/share.png')} style={styles.ar} />
             </TouchableOpacity>
           </View>
         </View>

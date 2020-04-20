@@ -13,7 +13,7 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import {SearchBar} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign';
-import DetailListItem from '../Detail/DetailListItem';
+import DetailListItem from '../../component/DetailListItem';
 import {getAllLocationInfo} from '../../network/request';
 
 export default class SearchScreen extends Component {

@@ -12,7 +12,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 
 import DetailListItem from './DetailListItem';
 
-import SwiperComponent from '../../component/swiper';
+import SwiperComponent from './swiper';
 
 export default class DetailList extends Component {
   constructor(props) {

@@ -42,6 +42,7 @@ export default class DetailPage extends Component {
     this.setState({
       data: data,
     });
+    console.log(data);
   }
 
   playAudio = () => {
@@ -61,12 +62,15 @@ export default class DetailPage extends Component {
     }
   };
 
-  shareToFriend() {
+  shareToFriend(imgUrl) {
     WeChat.shareToSession({
-      type: 'news',
-      webpageUrl: 'https://www.baidu.com',
-      title: 'Test sharing',
-      description: 'This is a test',
+      type: 'imageUrl',
+      title: 'web image',
+      description: 'share web image to time line',
+      mediaTagName: 'email signature',
+      messageAction: undefined,
+      messageExt: undefined,
+      imageUrl: imgUrl,
     })
       .then(response => {
         console.log(response);
@@ -81,13 +85,16 @@ export default class DetailPage extends Component {
         }
       });
   }
-  
-  shareToTimeline() {
+
+  shareToTimeline(imgUrl) {
     WeChat.shareToTimeline({
-      type: 'news',
-      webpageUrl: 'https://www.baidu.com',
-      title: 'Test sharing',
-      description: 'This is a test',
+      type: 'imageUrl',
+      title: 'web image',
+      description: 'share web image to time line',
+      mediaTagName: 'email signature',
+      messageAction: undefined,
+      messageExt: undefined,
+      imageUrl: imgUrl,
     })
       .then(response => {
         console.log(response);
@@ -163,10 +170,14 @@ export default class DetailPage extends Component {
         </View>
         <View style={styles.shareLine}>
           <Text style={styles.shareText}>分享至</Text>
-          <TouchableOpacity activeOpacity={0.8} onPress={this.shareToFriend}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => this.shareToFriend(this.state.data.pic)}>
             <Image source={require('../../img/wechat.png')} style={styles.ar} />
           </TouchableOpacity>
-          <TouchableOpacity activeOpacity={0.8} onPress={this.shareToTimeline}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => this.shareToTimeline(this.state.data.pic)}>
             <Image
               source={require('../../img/wechat-friend.png')}
               style={styles.ar}
