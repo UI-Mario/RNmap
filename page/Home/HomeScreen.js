@@ -11,6 +11,8 @@ import {
   TouchableHighlight,
   Linking,
   Dimensions,
+  Animated,
+  ImageBackground,
 } from 'react-native';
 
 import {MapView, Marker, Polyline, Polygon, MapType} from 'react-native-amap3d';
@@ -25,13 +27,15 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       curentId: 0,
-      isVisible: false,
+      num: 'none',
+      viewSize: new Animated.Value(0),
       isloading: true,
       detailListData: [],
       coordinate: {
         latitude: 30.5305286208,
         longitude: 114.364381429,
       },
+      backColor: 0,
     };
   }
 
@@ -55,32 +59,79 @@ export default class HomeScreen extends Component {
       });
   };
 
+  startViewAnimation = id => {
+    let targetValue = 1;
+    if (this.state.viewSize._value === 1) {
+      this.state.viewSize.setValue(0);
+      this.setState({
+        num: 'none',
+      });
+      targetValue = 0;
+    } else {
+      this.setState({
+        num: 'flex',
+      });
+    }
+
+    // Animated.parallel([
+    //   Animated.timing(...),
+    //   Animated.spring(...)
+    // ]).start()
+    Animated.spring(this.state.viewSize, {
+      toValue: targetValue,
+      duration: 300,
+    }).start();
+  };
+
   renderItem = item => {
     return (
       <MapView.Marker
-        image={item.shot}
-        // color="red"
-        coordinate={item.location}
-        title={item.title}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => {
-            this.setState({
-              isVisible: true,
-              curentId: item.id,
-            });
-          }}>
-          <View style={styles.customInfoWindow}>
-            <Text style={{color: '#515151'}}>{item.name}</Text>
+        // image={item.shot}
+        // description={item.title}
+        onPress={() => {
+          this.setState({
+            isVisible: true,
+            curentId: item.id,
+          });
+          this.startViewAnimation();
+        }}
+        icon={() => (
+          <View style={{backgroundColor: 'transparent', alignItems: 'center'}}>
+            <Text style={{color: '#515151', fontWeight: 'bold'}}>
+              {item.name}
+            </Text>
+            <Image
+              source={require('../../android/app/src/main/res/drawable/pf.png')}
+              style={{width: 40, height: 40}}
+            />
           </View>
+        )}
+        coordinate={item.location}
+        // title={item.name}
+      >
+        <TouchableOpacity activeOpacity={0.8}>
+          <View />
         </TouchableOpacity>
       </MapView.Marker>
     );
   };
 
   render() {
+    const viewSize = this.state.viewSize.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [0, (width / 7) * 5, (width / 4) * 2],
+    });
     return (
       <View style={{flex: 1}}>
+        <View
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(255, 255, 255, .5)',
+            display: this.state.num,
+            zIndex: 2,
+          }}
+        />
         <View style={styles.panoramaContainer}>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('PanoramaScreen')}>
@@ -90,20 +141,21 @@ export default class HomeScreen extends Component {
             />
           </TouchableOpacity>
         </View>
-        <Overlay
-          isVisible={this.state.isVisible}
-          windowBackgroundColor="rgba(255, 255, 255, .5)"
-          overlayBackgroundColor="#fff"
-          width={(width / 4) * 2}
-          height={(width / 4) * 2}
-          borderRadius={width / 4}
-          onBackdropPress={() => this.setState({isVisible: false})}>
+        <Animated.View
+          style={{
+            width: viewSize,
+            height: viewSize,
+            backgroundColor: '#fff',
+            borderRadius: 200,
+            position: 'absolute',
+            right: '25%',
+            top: '30%',
+            zIndex: 3,
+            overflow: 'hidden',
+          }}>
           <View style={styles.overlayercontainer}>
             <TouchableOpacity
               onPress={() => {
-                this.setState({
-                  isVisible: false,
-                });
                 this.props.navigation.navigate(
                   'DetailPage',
                   this.state.detailListData[this.state.curentId],
@@ -118,8 +170,13 @@ export default class HomeScreen extends Component {
                 <Text style={{color: '#515151'}}>AR</Text>
               </View>
             </TouchableOpacity>
+            <TouchableOpacity onPress={this.startViewAnimation}>
+              <View>
+                <Text style={{color: '#515151'}}>关闭</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </Overlay>
+        </Animated.View>
         <MapView
           locationEnabled={true}
           showsCompass={true}
@@ -153,6 +210,10 @@ export default class HomeScreen extends Component {
   }
 }
 const styles = {
+  trst: {
+    width: '100%',
+    backgroundColor: 'blue',
+  },
   panoramaContainer: {
     width: 43,
     height: 43,
@@ -162,8 +223,13 @@ const styles = {
     top: 50,
   },
   test: {
-    width: '100%',
-    height: '100%',
+    width: '50%',
+    height: 30,
+    borderWidth: 1,
+    borderRadius: 100,
+    borderColor: '#e6e6e6',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   overlayercontainer: {
     width: '100%',
@@ -171,6 +237,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-around',
     flexDirection: 'column',
+    // backgroundColor: '#1296db',
   },
   panoramaIcon: {
     width: '100%',
@@ -182,17 +249,6 @@ const styles = {
     zIndex: -100,
     width: '100%',
     height: '100%',
-  },
-  customInfoWindow: {
-    // backgroundColor: '#8bc34a',
-    backgroundColor: '#fff',
-    padding: 10,
-    borderRadius: 10,
-    elevation: 4,
-    borderWidth: 2,
-    // borderColor: '#689F38',
-    borderColor: '#1296db',
-    marginBottom: 5,
   },
   customMarker: {
     backgroundColor: '#009688',
