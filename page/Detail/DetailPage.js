@@ -20,6 +20,7 @@ WeChat.registerApp(wxAppId);
 
 const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
 
+// TODO:
 let url = 'http://q6z705tdq.bkt.clouddn.com/audio.mp3';
 let whoosh = new Sound(url, '', err => {
   if (err) {
@@ -125,6 +126,21 @@ export default class DetailPage extends Component {
     }
   };
 
+  renderItem = item => {
+    return (
+      <View>
+        <View style={styles.user}>
+          <Image source={{uri: item.avatar}} style={styles.avatar} />
+          <Text style={{color: '#707070'}}>{item.name}</Text>
+        </View>
+        <View style={styles.comment}>
+          <Text style={{color: '#515151'}}>item.comment</Text>
+        </View>
+        <View style={styles.hr2} />
+      </View>
+    );
+  };
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -185,8 +201,8 @@ export default class DetailPage extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.hr} />
-        <View>
-          <Text>评论</Text>
+        <View style={styles.commentContainer}>
+          <Text style={styles.commentTitle}>热门评论</Text>
         </View>
       </ScrollView>
     );
@@ -260,6 +276,34 @@ const styles = StyleSheet.create({
   hr: {
     width: '100%',
     height: 20,
+    backgroundColor: '#f2f2f2',
+  },
+  commentContainer: {
+    // backgroundColor: 'blue',
+    padding: 10,
+  },
+  commentTitle: {
+    marginBottom: 10,
+    color: '#515151',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  user: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 100,
+    marginRight: 10,
+  },
+  comment: {
+    paddingLeft: 40,
+  },
+  hr2: {
+    width: '100%',
+    height: 1,
     backgroundColor: '#f2f2f2',
   },
 });
