@@ -21,7 +21,7 @@ WeChat.registerApp(wxAppId);
 const {height: deviceHeight, width: deviceWidth} = Dimensions.get('window');
 
 // TODO:
-let url = 'http://q6z705tdq.bkt.clouddn.com/audio.mp3';
+let url = 'http://q8xox3se4.bkt.clouddn.com/audio.mp3';
 let whoosh = new Sound(url, '', err => {
   if (err) {
     return console.log(err);

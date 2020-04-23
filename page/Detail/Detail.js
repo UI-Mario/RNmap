@@ -50,10 +50,10 @@ export default class Detail extends Component {
     getAllLocationInfo()
       .then(res => res.json())
       .then(data => {
-        this._category(data.data);
+        this._category(data);
         this.setState({
           isloading: false,
-          detailListData: data.data,
+          detailListData: data,
           fetchError: false,
         });
       })
@@ -79,9 +79,9 @@ export default class Detail extends Component {
   };
 
   _category = data => {
-    var _data_xb = data.filter(i => i.where === '信息学部');
-    var _data_wlxb = data.filter(i => i.where === '文理学部');
-    var _data_gxb = data.filter(i => i.where === '工学部');
+    var _data_xb = data.filter(i => i.faculty === '信息学部');
+    var _data_wlxb = data.filter(i => i.faculty === '文理学部');
+    var _data_gxb = data.filter(i => i.faculty === '工学部');
     this.setState({
       data_xb: _data_xb,
       data_gxb: _data_gxb,
@@ -91,7 +91,7 @@ export default class Detail extends Component {
 
   updateSearch = search => {
     this.setState({search: search});
-    console.log(search);
+    // console.log(search);
   };
 
   renderList = (data, name) => {

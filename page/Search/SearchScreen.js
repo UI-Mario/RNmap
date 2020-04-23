@@ -38,7 +38,7 @@ export default class SearchScreen extends Component {
       .then(data => {
         this.setState({
           isloading: false,
-          detailListData: data.data,
+          detailListData: data,
         });
       });
   };

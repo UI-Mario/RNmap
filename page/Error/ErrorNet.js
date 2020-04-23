@@ -13,7 +13,7 @@ export default class ErrorScreen extends Component {
       <View style={styles.container}>
         <Image
           style={{width: '100%', height: height}}
-          source={require('../../Assets/Images/error.png')}
+          source={{uri: 'http://q8xox3se4.bkt.clouddn.com/error.png'}}
         />
       </View>
     );

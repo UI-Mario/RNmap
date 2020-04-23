@@ -54,15 +54,15 @@ export default class SwiperComponent extends Component {
         }>
         <Image
           style={styles.swiperimg}
-          source={require('../Assets/Images/yhcb4.jpg')}
+          source={{uri: 'http://q8xox3se4.bkt.clouddn.com//yhcb4.jpg'}}
         />
         <Image
           style={styles.swiperimg}
-          source={require('../Assets/Images/pf2.jpg')}
+          source={{uri: 'http://q8xox3se4.bkt.clouddn.com//pf2.jpg'}}
         />
         <Image
           style={styles.swiperimg}
-          source={require('../Assets/Images/lt.jpg')}
+          source={{uri: 'http://q8xox3se4.bkt.clouddn.com/lt.jpg'}}
         />
       </Swiper>
     );

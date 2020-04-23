@@ -54,7 +54,7 @@ export default class HomeScreen extends Component {
       .then(data => {
         this.setState({
           isloading: false,
-          detailListData: data.data,
+          detailListData: data,
         });
       });
   };
@@ -84,6 +84,12 @@ export default class HomeScreen extends Component {
   };
 
   renderItem = item => {
+    const thisLatitude = item.location.split(',')[1];
+    const thisLongitude = item.location.split(',')[0];
+    const thisCoordinate = {
+      latitude: parseFloat(thisLatitude),
+      longitude: parseFloat(thisLongitude),
+    };
     return (
       <MapView.Marker
         // image={item.shot}
@@ -100,13 +106,10 @@ export default class HomeScreen extends Component {
             <Text style={{color: '#515151', fontWeight: 'bold'}}>
               {item.name}
             </Text>
-            <Image
-              source={require('../../android/app/src/main/res/drawable/pf.png')}
-              style={{width: 40, height: 40}}
-            />
+            <Image source={{uri: item.icon}} style={{width: 40, height: 40}} />
           </View>
         )}
-        coordinate={item.location}
+        coordinate={thisCoordinate}
         // title={item.name}
       >
         <TouchableOpacity activeOpacity={0.8}>

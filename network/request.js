@@ -1,7 +1,6 @@
 import {Alert} from 'react-native';
 
-const baseUrl =
-  'http://rap2.taobao.org:38080/app/mock/246371/example/1583420999935';
+const baseUrl = 'http://ljzlivio.frpgz1.idcfengye.com/locations';
 
 export function getAllLocationInfo() {
   return fetch(baseUrl, {
@@ -9,7 +8,8 @@ export function getAllLocationInfo() {
   });
 }
 
-export function test() {
-  Alert.alert('2222');
-  console.log('11111');
+export function getAudio() {
+  return fetch('http://q8xox3se4.bkt.clouddn.com/audio.mp3', {
+    method: 'Get',
+  });
 }
