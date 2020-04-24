@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  ListViewComponent,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -134,7 +135,7 @@ export default class DetailPage extends Component {
           <Text style={{color: '#707070'}}>{item.name}</Text>
         </View>
         <View style={styles.comment}>
-          <Text style={{color: '#515151'}}>item.comment</Text>
+          <Text style={{color: '#515151'}}>{item.comment}</Text>
         </View>
         <View style={styles.hr2} />
       </View>
@@ -142,6 +143,12 @@ export default class DetailPage extends Component {
   };
 
   render() {
+    const comment = {
+      avatar:
+        'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      name: 'Livio',
+      comment: '这是评论',
+    };
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.title}>{this.state.data.name}</Text>
@@ -203,6 +210,9 @@ export default class DetailPage extends Component {
         <View style={styles.hr} />
         <View style={styles.commentContainer}>
           <Text style={styles.commentTitle}>热门评论</Text>
+          {this.renderItem(comment)}
+          {this.renderItem(comment)}
+          {this.renderItem(comment)}
         </View>
       </ScrollView>
     );
@@ -305,5 +315,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 1,
     backgroundColor: '#f2f2f2',
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
