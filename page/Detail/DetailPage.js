@@ -12,6 +12,7 @@ import {
 import {WebView} from 'react-native-webview';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {ScrollView} from 'react-native-gesture-handler';
+import {MapView, Marker, Polyline, Polygon, MapType} from 'react-native-amap3d';
 
 import Sound from 'react-native-sound';
 
@@ -143,6 +144,16 @@ export default class DetailPage extends Component {
   };
 
   render() {
+    const thisLatitude = this.props.navigation.state.params.location.split(
+      ',',
+    )[1];
+    const thisLongitude = this.props.navigation.state.params.location.split(
+      ',',
+    )[0];
+    const thisCoordinate = {
+      latitude: parseFloat(thisLatitude),
+      longitude: parseFloat(thisLongitude),
+    };
     const comment = {
       avatar:
         'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
@@ -208,6 +219,22 @@ export default class DetailPage extends Component {
           </TouchableOpacity>
         </View>
         <View style={styles.hr} />
+        <MapView
+          locationEnabled={true}
+          showsScale={true}
+          draggable
+          coordinate={thisCoordinate}
+          zoomLevel={15}
+          zoomEnabled={true}
+          scrollEnabled={true}
+          rotateEnabled={true}
+          style={styles.mapStyles}>
+          <MapView.Marker
+            title={this.props.navigation.state.params.name}
+            image="flag"
+            coordinate={thisCoordinate}
+          />
+        </MapView>
         <View style={styles.commentContainer}>
           <Text style={styles.commentTitle}>热门评论</Text>
           {this.renderItem(comment)}
@@ -287,6 +314,10 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 20,
     backgroundColor: '#f2f2f2',
+  },
+  mapStyles: {
+    width: '100%',
+    height: 130,
   },
   commentContainer: {
     // backgroundColor: 'blue',

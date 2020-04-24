@@ -92,8 +92,6 @@ export default class HomeScreen extends Component {
     };
     return (
       <MapView.Marker
-        // image={item.shot}
-        // description={item.title}
         onPress={() => {
           this.setState({
             isVisible: true,
@@ -109,9 +107,7 @@ export default class HomeScreen extends Component {
             <Image source={{uri: item.icon}} style={{width: 40, height: 40}} />
           </View>
         )}
-        coordinate={thisCoordinate}
-        // title={item.name}
-      >
+        coordinate={thisCoordinate}>
         <TouchableOpacity activeOpacity={0.8}>
           <View />
         </TouchableOpacity>
@@ -187,7 +183,6 @@ export default class HomeScreen extends Component {
           showsLocationButton={true}
           draggable
           coordinate={this.state.coordinate}
-          zoomLevel={20}
           zoomEnabled={true}
           scrollEnabled={true}
           rotateEnabled={true}
