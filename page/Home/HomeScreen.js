@@ -44,7 +44,7 @@ export default class HomeScreen extends Component {
   }
 
   open = () => {
-    let url = 'https://ui-mario.github.io/RNmap/page/AR/webview/test.html';
+    let url = 'https://ui-mario.github.io/RNmap/page/AR/webview/geoar.html';
     Linking.openURL(url);
   };
 
