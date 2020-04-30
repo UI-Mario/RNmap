@@ -30,9 +30,9 @@ export default class Scanner extends Component {
     getAllLocationInfo()
       .then(res => res.json())
       .then(data => {
-        // console.log(data.data);
+        console.log(data);
         this.setState({
-          detailListData: data.data,
+          detailListData: data,
         });
       });
   };
