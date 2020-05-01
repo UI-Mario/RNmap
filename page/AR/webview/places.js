@@ -101,22 +101,22 @@ function staticLoadPlaces() {
     {
       name: 'place0',
       location: {
-        lat: 30.75225666, // add here latitude if using static data
-        lng: 106.06361669, // add here longitude if using static data
+        lat: 30.752868, // add here latitude if using static data
+        lng: 106.062012, // add here longitude if using static data
       },
     },
     {
       name: 'place1',
       location: {
-        lat: 30.75445104,
-        lng: 106.06014055,
+        lat: 30.752854,
+        lng: 106.059598,
       },
     },
     {
       name: 'place2',
       location: {
-        lat: 30.75113178,
-        lng: 106.06087011,
+        lat: 30.752117,
+        lng: 106.060461,
       },
     },
   ];
