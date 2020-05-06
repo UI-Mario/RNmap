@@ -173,6 +173,7 @@ function renderPlaces(places) {
     icon.setAttribute('scale', '60, 60');
 
     icon.addEventListener('loaded', () =>
+      // eslint-disable-next-line no-undef
       window.dispatchEvent(new CustomEvent('gps-entity-place-loaded')),
     );
 
