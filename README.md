@@ -21,7 +21,7 @@
 
 - 登录、收藏、评论等
 - 基于ARCore的AR应用，预计页面：
-<image width="20%" src="https://raw.githubusercontent.com/UI-Mario/RNmap/master/screenshot/geoar.gif"/>
+<image width="340" src="https://raw.githubusercontent.com/UI-Mario/RNmap/master/screenshot/geoar.gif"/>
 
 - 地图页面的实现方式更换
 
